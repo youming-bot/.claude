@@ -1,7 +1,6 @@
 ---
 name: unit-test-developer
 description: Use this agent when you need to create or maintain unit tests for project modules.
-model: sonnet
 color: cyan
 tools: Bash, Read, Write, Edit, Glob, Grep
 ---

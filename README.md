@@ -6,11 +6,11 @@ This folder defines specialized Claude Code agents with clear, single‑purpose 
 
 ## Agents
 
-- System Architect (`system-architect`): Architectural guidance, context analysis, task decomposition. No coding/tests/docs.
-- Fullstack Developer (`fullstack-developer`): Feature implementation and fixes. No tests/docs/review.
-- Unit Test Developer (`unit-test-developer`): Unit tests and coverage docs under `test/unit/` mirroring `src/`.
-- Docs Maintainer (`docs-maintainer`): Project and module documentation, consistency, cross‑references.
-- Code Reviewer (`code-reviewer`): Git‑based review for standards and architectural consistency.
+- System Architect (`system-architect`): Architectural guidance, context analysis, task decomposition. Uses Codex CLI. No coding/tests/docs.
+- Fullstack Developer (`fullstack-developer`): Feature implementation and fixes. Uses Claude Code tools. No tests/docs/review.
+- Unit Test Developer (`unit-test-developer`): Unit tests and coverage docs under `test/unit/` mirroring `src/`. Uses Codex CLI.
+- Docs Maintainer (`docs-maintainer`): Project and module documentation, consistency, cross‑references. Uses Codex CLI.
+- Code Reviewer (`code-reviewer`): Git‑based review for standards and architectural consistency. Uses Codex CLI.
 - Gemini Analyzer (`gemini-analyzer`): CLI wrapper that builds and runs Gemini commands, returns raw output only.
 
 ## Workflow (Typical)
@@ -34,7 +34,7 @@ name: <agent-id>
 description: <when to use>
 model: <preferred-model>
 color: <ui-hint>
-# Optional: tools (e.g., for CLI wrappers like gemini-analyzer)
+tools: <tool-list> # e.g., Bash, Read, Write, Edit, Glob, Grep
 ---
 ```
 
@@ -44,9 +44,11 @@ color: <ui-hint>
   - Whole‑repo analysis: `gemini --all-files -p "<prompt>"`
   - Non‑interactive: `--yolo`, Debug: `--debug`
   - Returns raw output; interpretation belongs to Architect/Developer.
-- Codex CLI:
-  - Apply atomic patches (`apply_patch`) and maintain task plans (`update_plan`).
-  - Use for mechanical, repeatable edits and scaffolding under role guidance.
+- Codex CLI (used by multiple agents):
+  - Apply atomic patches: `codex apply`
+  - Execute commands: `codex exec`
+  - Used by System Architect, Unit Test Developer, Docs Maintainer, and Code Reviewer
+  - For mechanical edits, documentation, testing, and architectural analysis
 
 ## Maintenance
 
