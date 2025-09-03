@@ -6,12 +6,12 @@ This folder defines specialized Claude Code agents with clear, single‑purpose 
 
 ## Agents
 
-- System Architect (`system-architect`): Architectural guidance, context analysis, task decomposition. Uses Codex CLI. No coding/tests/docs.
-- Fullstack Developer (`fullstack-developer`): Feature implementation and fixes. Uses Claude Code tools. No tests/docs/review.
-- Unit Test Developer (`unit-test-developer`): Unit tests and coverage docs under `test/unit/` mirroring `src/`. Uses Codex CLI.
-- Docs Maintainer (`docs-maintainer`): Project and module documentation, consistency, cross‑references. Uses Codex CLI.
-- Code Reviewer (`code-reviewer`): Git‑based review for standards and architectural consistency. Uses Codex CLI.
-- Gemini Analyzer (`gemini-analyzer`): CLI wrapper that builds and runs Gemini commands, returns raw output only.
+- System Architect (`system-architect.md`): Architectural guidance, context analysis, task decomposition. Uses Codex CLI. No coding/tests/docs.
+- Fullstack Developer (`fullstack-developer.md`): Feature implementation and fixes. Uses Codex CLI. No tests/docs/review.
+- Unit Test Developer (`unit-test-developer.md`): Unit tests and coverage docs under `test/unit/` mirroring `src/`. Uses Codex CLI.
+- Docs Maintainer (`docs-maintainer.md`): Project and module documentation, consistency, cross‑references. Uses Codex CLI.
+- Code Reviewer (`code-reviewer.md`): Git‑based review for standards and architectural consistency. Uses Codex CLI.
+- Gemini Analyzer (`gemini-analyzer.md`): CLI wrapper that builds and runs Gemini commands, returns raw output only.
 
 ## Workflow (Typical)
 
