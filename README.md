@@ -7,7 +7,7 @@ This folder defines specialized Claude Code agents with clear, single‑purpose 
 ## Agents
 
 - System Architect (`system-architect.md`): Architectural guidance, context analysis, task decomposition. Uses Codex CLI. No coding/tests/docs.
-- Fullstack Developer (`fullstack-developer.md`): Feature implementation and fixes. Uses Codex CLI. No tests/docs/review.
+- Fullstack Developer (`fullstack-developer.md`): Feature implementation and fixes. No tests/docs/review.
 - Unit Test Developer (`unit-test-developer.md`): Unit tests and coverage docs under `test/unit/` mirroring `src/`. Uses Codex CLI.
 - Docs Maintainer (`docs-maintainer.md`): Project and module documentation, consistency, cross‑references. Uses Codex CLI.
 - Code Reviewer (`code-reviewer.md`): Git‑based review for standards and architectural consistency. Uses Codex CLI.
