@@ -44,7 +44,7 @@ Before starting any development work, you must:
 
 After each development, you must perform the following quality checks **on the files modified**:
 
-- Run `eslint --fix <modified_file_path>` to fix code style for modified files
+- Run `pnpm biome check --apply <modified_file_path>` to fix code style for modified files
 - Run `tsc --noEmit` for overall TypeScript type checking
 - Ensure modified files have no lint issues and do not introduce new type errors
 
