@@ -42,7 +42,7 @@ Access Codex CLI via the Bash tool using commands like `codex apply` or `codex e
 
 ## Review Process
 
-0. **Pre-Flight Checks**: Run `.claude/agents/quality-gate.sh --scope review` (or confirm the Fullstack Developer has done so) before proceeding
+
 1. **Change Scope Analysis**: Use `git diff` and `git status` to understand which files have been modified
 2. **File-by-File Review**: Thoroughly examine the content of each changed file, understanding its purpose and impact
 3. **Architectural Impact**: Evaluate whether changes maintain the project's architectural principles

@@ -18,6 +18,7 @@
 ### 1. 环境准备
 
 确保你的开发环境中已安装以下工具：
+
 - `git`: 用于版本控制。
 - `claude`: AI Agent 的命令行启动器。
 - `node` / `pnpm`: (如果适用) 用于项目依赖管理和脚本执行。
@@ -41,15 +42,15 @@ claude -f .claude/agents/system-architect.md
 # 第二步：开发者 Agent 根据设计稿进行功能开发
 claude -f .claude/agents/fullstack-developer.md
 
-# 第三步：运行质量门控，确保代码质量
-.claude/agents/quality-gate.sh --scope modified
+# 第三步：代码审查，确保代码质量
+claude -f .claude/agents/code-reviewer.md
+
 ```
 
 ### 3. 核心概念
 
 - **Agent**: 一个专门处理特定开发任务（如架构设计、编码、测试）的 AI 实体。
 - **`handoff.md`**: Agent 之间交接工作的核心文档，记录任务状态、产出和上下文。
-- **质量门控 (`quality-gate.sh`)**: 一个自动化脚本，用于在开发流程中执行代码规范、测试和安全检查。
 
 ---
 
@@ -75,10 +76,13 @@ graph LR
 # 启动架构师 Agent
 claude -f .claude/agents/system-architect.md
 ```
+
 **输入示例**：
+
 ```
 "设计一个用户管理模块，需要支持用户的增删改查、分页和搜索功能。技术栈采用 Next.js 和 TypeScript。"
 ```
+
 **输出**：生成或更新 `handoff.md`，包含模块划分、API 设计和任务分解。
 
 ### 2. 功能开发 (Fullstack Developer)
@@ -89,7 +93,9 @@ claude -f .claude/agents/system-architect.md
 # 启动开发者 Agent
 claude -f .claude/agents/fullstack-developer.md
 ```
+
 **核心任务**：
+
 - 实现数据模型和类型定义。
 - 开发后端 API 接口。
 - 构建前端 UI 组件和页面。
@@ -128,22 +134,13 @@ claude -f .claude/agents/docs-maintainer.md
 
 ## 🛠️ 实用工具与命令
 
-### 质量门控脚本 (`quality-gate.sh`)
+### 代码审查
 
-这是保证项目质量的核心工具。
+使用代码审查 Agent 来确保代码质量。
 
 ```bash
-# 查看帮助文档
-.claude/agents/quality-gate.sh --help
-
-# 仅检查自上次提交以来修改过的文件（推荐在开发机上使用）
-.claude/agents/quality-gate.sh --scope modified
-
-# 执行全面的代码质量检查（推荐在 CI/CD 环境中使用）
-.claude/agents/quality-gate.sh --scope full
-
-# 检查时跳过测试环节
-.claude/agents/quality-gate.sh --skip-tests
+# 启动代码审查 Agent
+claude -f .claude/agents/code-reviewer.md
 ```
 
 ### 手动创建 `handoff.md`
@@ -178,13 +175,13 @@ EOF
 
 ### Agent 选择策略
 
-| 任务类型 | 推荐流程 | 说明 |
-| :--- | :--- | :--- |
-| **新功能开发** | `System Architect` → `Fullstack Developer` → `Code Reviewer` | 标准、完整的开发流程。 |
-| **Bug 修复** | `Fullstack Developer` → `Code Reviewer` | 快速定位问题并修复。 |
-| **代码重构** | `System Architect` → `Fullstack Developer` → `Code Reviewer` | 确保重构不偏离架构目标。 |
-| **补充测试** | `Unit Test Developer` → `Integration Test Developer` | 提升代码库的测试覆盖率。 |
-| **文档维护** | `Docs Maintainer` | 保持文档的实时性和准确性。 |
+| 任务类型       | 推荐流程                                                     | 说明                       |
+| :------------- | :----------------------------------------------------------- | :------------------------- |
+| **新功能开发** | `System Architect` → `Fullstack Developer` → `Code Reviewer` | 标准、完整的开发流程。     |
+| **Bug 修复**   | `Fullstack Developer` → `Code Reviewer`                      | 快速定位问题并修复。       |
+| **代码重构**   | `System Architect` → `Fullstack Developer` → `Code Reviewer` | 确保重构不偏离架构目标。   |
+| **补充测试**   | `Unit Test Developer` → `Integration Test Developer`         | 提升代码库的测试覆盖率。   |
+| **文档维护**   | `Docs Maintainer`                                            | 保持文档的实时性和准确性。 |
 
 ### `handoff.md` 编写标准
 
@@ -192,22 +189,26 @@ EOF
 
 ```markdown
 ## 任务基本信息
+
 - **任务名称**：[清晰的任务标题]
 - **任务类型**：[新功能 / Bug修复 / 重构 / 优化]
 - **优先级**：[高 / 中 / 低]
 - **截止日期**：[YYYY-MM-DD]
 
 ## 技术与设计要求
+
 - **技术栈**：[明确的技术选型]
 - **性能要求**：[可量化的性能指标]
 - **安全要求**：[需遵循的安全标准]
 
 ## 任务分解与状态
+
 - [x] **已完成**: [描述已完成的工作]
 - [ ] **进行中**: [描述当前正在进行的工作]
 - [ ] **待开始**: [描述下一步计划]
 
 ## 下游协作须知
+
 - **重点关注**：[需要下游 Agent 特别注意的事项]
 - **潜在风险**：[可能遇到的问题或挑战]
 - **依赖关系**：[任务的前置或后置依赖]
@@ -229,23 +230,23 @@ EOF
 **Q2: `handoff.md` 应该在什么时候创建或更新？**
 **A**: 在新任务开始时、任务在 Agent 间交接时、或有重要技术决策需要记录时。
 
-**Q3: 质量门控检查失败了怎么办？**
-**A**: 首先，仔细阅读错误日志定位问题。然后，手动修复或让 `Fullstack Developer` Agent 介入修复。最后，重新运行质量门控以验证修复效果。
+**Q3: 代码审查发现问题怎么办？**
+**A**: 首先，仔细阅读代码审查 Agent 的反馈和建议。然后，根据反馈进行必要的修改。最后，可以重新运行代码审查 Agent 进行验证。
 
-**Q4: 如何将质量门控集成到 CI/CD 流程？**
-**A**: 在你的 CI/CD 配置文件（如 `.github/workflows/main.yml`）中添加一个步骤，用于执行质量检查脚本。
+**Q4: 如何将代码审查集成到 CI/CD 流程？**
+**A**: 在你的 CI/CD 配置文件（如 `.github/workflows/main.yml`）中添加一个步骤，用于执行代码审查。
 
 ```yaml
-# .github/workflows/quality-gate.yml
-name: Quality Gate
+# .github/workflows/code-review.yml
+name: Code Review
 on: [push, pull_request]
 jobs:
-  quality-gate:
+  code-review:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Run Quality Gate
-        run: ./.claude/agents/quality-gate.sh --scope full
+      - name: Run Code Review
+        run: claude -f .claude/agents/code-reviewer.md
 ```
 
 ---
@@ -253,12 +254,13 @@ jobs:
 ## 🔧 故障排查
 
 **问题：Agent 无法启动**
+
 - **检查文件路径**：确保 `.claude/agents/` 目录下的 Agent 定义文件存在。
-- **检查文件权限**：确保脚本（如 `quality-gate.sh`）有执行权限 (`chmod +x <file>`)。
 - **检查 `claude` 工具**：运行 `claude --version` 确认工具已正确安装。
 
-**问题：质量门控持续失败**
-- **查看详细日志**：使用 `--verbose` 标志运行脚本以获取更详细的错误信息。
+**问题：代码审查发现问题**
+
+- **查看详细反馈**：仔细阅读代码审查 Agent 的反馈和建议。
 - **检查环境依赖**：确认 `pnpm`, `node` 等所需工具已安装且版本正确。
 - **重新安装依赖**：尝试删除 `node_modules` 和缓存，然后重新运行 `pnpm install`。
 
@@ -267,14 +269,16 @@ jobs:
 ## 📚 总结
 
 ### 核心优势
+
 - **专业分工**: 每个 Agent 聚焦于特定领域，提升产出质量。
-- **质量内建**: 自动化的质量门控和代码审查确保了代码的健壮性。
+- **质量内建**: 专业的代码审查 Agent 确保了代码的健壮性。
 - **高度可扩展**: 可以方便地定义新的 Agent 和规则以适应不同项目的需求。
 - **高效协作**: `handoff.md` 机制确保了信息在不同角色间无损流转。
 
 ### 成功关键
+
 - **清晰的沟通**: 保持 `handoff.md` 的高质量和实时性。
-- **严格的质量标准**: 不跳过任何质量检查环节。
+- **严格的代码审查**: 确保每次代码变更都经过专业审查。
 - **灵活的流程**: 根据项目规模和阶段，灵活调整 Agent 的使用策略。
 
 ---
@@ -283,4 +287,4 @@ jobs:
 
 如果遇到问题或有改进建议，请联系团队或在项目中提出 Issue。
 
-*本文档为动态更新的指南，请以最新版本为准。*
+_本文档为动态更新的指南，请以最新版本为准。_

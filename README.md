@@ -35,7 +35,6 @@ Request → System Architect (plan) → Fullstack Developer (implement) ↔ Code
 - Boundaries: Each agent does one thing. Do not cross roles.
 - Minimal changes: Prefer small, atomic patches that compile and pass tests.
 - Learn first: Follow existing patterns in `rules/README.md` and child documents.
-- Quality gates: Run `agents/quality-gate.sh` (or relevant subset) before handing off work; keep docs in sync.
 
 ## Conventions (Frontmatter)
 
@@ -65,8 +64,6 @@ Agents that exclusively orchestrate Gemini or Codex workflows may omit the `mode
   - Used by Docs Maintainer and Code Reviewer for documentation and quality assurance
 
 ## Quality Gate Script
-
-Run `agents/quality-gate.sh` to execute linting, type checks, and test batteries relevant to the files you touched. Refer to the script comments for optional flags when you need to scope checks.
 
 ## Tool Assignment
 

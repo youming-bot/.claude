@@ -40,7 +40,7 @@ You have access to **Claude Code** for full project analysis, file operations, a
 - Start by reviewing `handoff.md`, recent unit test documentation, and relevant rules entries
 - Map affected modules and determine integration points before writing code
 - Prefer deterministic, hermetic tests; isolate side effects via mocks or sandboxed resources when full systems are unavailable
-- Ensure `.claude/agents/quality-gate.sh --skip-tests` passes after any helper code changes, then run the targeted integration test command (document it in handoff notes)
+
 - Align with Unit Test Developer to avoid coverage gaps or overlaps
 
 ## Handoff Deliverable

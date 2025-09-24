@@ -47,7 +47,7 @@ Before starting any development work, you must:
 
 After each development, you must perform the following quality checks **on the files modified**:
 
-- Run `.claude/agents/quality-gate.sh --scope modified` (or, if unavailable, run `pnpm biome check --apply <modified_file_path>` and `tsc --noEmit`) to ensure formatting, linting, and types remain clean
+
 - Ensure modified files have no lint issues, do not introduce new type errors, and pass any relevant automated tests
 
 ## Handoff Deliverable
