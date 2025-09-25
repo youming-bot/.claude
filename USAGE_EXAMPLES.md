@@ -109,16 +109,13 @@ claude -f .claude/agents/fullstack-developer.md
 claude -f .claude/agents/code-reviewer.md
 ```
 
-### 4. 测试覆盖 (Unit/Integration Test Developer)
+### 4. 测试覆盖 (Test Developer)
 
-**目标**：为新功能编写单元测试和集成测试，确保代码的稳定性和可靠性。
+**目标**：为新功能编写全面的测试覆盖，包括单元测试、集成测试和端到端测试，确保代码的稳定性和可靠性。
 
 ```bash
-# 启动单元测试 Agent
-claude -f .claude/agents/unit-test-developer.md
-
-# 启动集成测试 Agent
-claude -f .claude/agents/integration-test-developer.md
+# 启动测试开发者 Agent
+claude -f .claude/agents/test-developer.md
 ```
 
 ### 5. 文档更新 (Docs Maintainer)
@@ -180,7 +177,7 @@ EOF
 | **新功能开发** | `System Architect` → `Fullstack Developer` → `Code Reviewer` | 标准、完整的开发流程。     |
 | **Bug 修复**   | `Fullstack Developer` → `Code Reviewer`                      | 快速定位问题并修复。       |
 | **代码重构**   | `System Architect` → `Fullstack Developer` → `Code Reviewer` | 确保重构不偏离架构目标。   |
-| **补充测试**   | `Unit Test Developer` → `Integration Test Developer`         | 提升代码库的测试覆盖率。   |
+| **补充测试**   | `Test Developer`         | 提升代码库的全面测试覆盖率。   |
 | **文档维护**   | `Docs Maintainer`                                            | 保持文档的实时性和准确性。 |
 
 ### `handoff.md` 编写标准

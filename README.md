@@ -8,8 +8,7 @@ This folder defines specialized Claude Code agents with clear, single‑purpose 
 
 - System Architect (`agents/system-architect.md`): Architectural guidance, context analysis, task decomposition. Uses Claude Code + Sonnet. No coding/tests/docs.
 - Fullstack Developer (`agents/fullstack-developer.md`): Feature implementation and fixes. Uses Claude Code + Sonnet. No tests/docs/review.
-- Unit Test Developer (`agents/unit-test-developer.md`): Unit tests and coverage docs under `test/unit/` mirroring `src/`. Uses Claude Code + Sonnet.
-- Integration Test Developer (`agents/integration-test-developer.md`): Cross-module and end-to-end verification plus integration handoff docs. Uses Claude Code + Sonnet.
+- Test Developer (`agents/test-developer.md`): Comprehensive test coverage including unit tests (`test/unit/`), integration tests (`test/integration/`), and end-to-end verification. Uses Claude Code + Sonnet.
 - Docs Maintainer (`agents/docs-maintainer.md`): Project and module documentation, consistency, cross‑references. Uses Codex CLI.
 - Code Reviewer (`agents/code-reviewer.md`): Git‑based review for standards and architectural consistency. Uses Codex CLI.
 - DevOps Engineer (`agents/devops-engineer.md`): Dependency governance, environment setup, CI/CD pipeline tasks. Uses Codex CLI + Bash.
@@ -19,7 +18,7 @@ This folder defines specialized Claude Code agents with clear, single‑purpose 
 
 ## Workflow (Typical)
 
-Request → System Architect (plan) → Fullstack Developer (implement) ↔ Code Reviewer (review loop) → Unit Test Developer (unit coverage) → Integration Test Developer (integration coverage) → Docs Maintainer (docs). Use Gemini Analyzer for whole‑codebase analysis at any stage. Use Codex CLI to land atomic patches.
+Request → System Architect (plan) → Fullstack Developer (implement) ↔ Code Reviewer (review loop) → Test Developer (comprehensive testing) → Docs Maintainer (docs). Use Gemini Analyzer for whole‑codebase analysis at any stage. Use Codex CLI to land atomic patches.
 
 ## Handoff & Feedback
 
@@ -67,8 +66,8 @@ Agents that exclusively orchestrate Gemini or Codex workflows may omit the `mode
 
 ## Tool Assignment
 
-- **Claude Code + Sonnet**: System Architect, Fullstack Developer, Unit Test Developer, Integration Test Developer
-  - Used for complex architectural design, feature implementation, and test development
+- **Claude Code + Sonnet**: System Architect, Fullstack Developer, Test Developer
+  - Used for complex architectural design, feature implementation, and comprehensive test development
   - Leverages full Claude Code capabilities for comprehensive tasks
 
 - **Codex CLI + Bash**: Docs Maintainer, Code Reviewer, DevOps Engineer, Gemini Analyzer
