@@ -1,0 +1,12 @@
+{
+  "flow": [
+    "product-owner",
+    "architect",
+    "coder",
+    "tester",
+    "devops",
+    "doc-writer",
+    "reviewer"
+  ],
+  "autoCommit": true
+}
