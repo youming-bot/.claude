@@ -1,81 +1,81 @@
-# Claude AI 代理开发框架
+# Claude AI Agent Development Framework
 
-一个基于 Claude AI 的结构化软件开发框架，通过多角色协作实现完整的软件开发生命周期管理。
+A structured software development framework based on Claude AI, implementing complete software development lifecycle management through multi-role collaboration.
 
-## 🚀 特性
+## 🚀 Features
 
-- **多角色协作**: 集成 7 个专业的 AI 开发角色
-- **结构化流程**: 从需求分析到部署上线的完整开发流程
-- **质量控制**: 严格的 3 次失败停止原则
-- **中文优先**: 所有输出使用中文，内部处理使用英文
-- **测试驱动**: 强调 TDD 开发方法论
-- **可逆设计**: 所有技术决策都考虑可逆性
+- **Multi-role Collaboration**: 7 specialized AI development roles
+- **Structured Process**: Complete development flow from requirements to deployment
+- **Quality Control**: Strict 3-attempt failure stop principle
+- **Bilingual Processing**: English for internal processing, Chinese for outputs
+- **Test-Driven**: Emphasis on TDD methodology
+- **Reversible Design**: All technical decisions consider reversibility
 
-## 📁 项目结构
+## 📁 Project Structure
 
 ```
 .claude/
-├── CLAUDE.md              # 核心开发规范和指南
-├── idea.txt               # 项目需求描述
-├── run.json               # 工作流程配置
-├── agents/                # AI 角色定义
-│   ├── architect.md      # 架构师
-│   ├── coder.md          # 开发者
-│   ├── devops.md         # DevOps 工程师
-│   ├── doc-writer.md     # 文档编写者
-│   ├── gemini-analyzer.md # Gemini 分析器
-│   ├── product-owner.md  # 产品负责人
-│   ├── reviewer.md       # 代码审查者
-│   └── tester.md         # 测试工程师
-└── output/               # 工作输出目录
-    ├── arch/            # 架构设计
-    ├── deploy/          # 部署配置
-    ├── docs/            # 项目文档
-    ├── prd/             # 产品需求
-    ├── review/          # 审查报告
-    ├── src/             # 源代码
-    └── tests/           # 测试文件
+├── CLAUDE.md              # Core development guidelines
+├── idea.txt               # Project requirements
+├── run.json               # Workflow configuration
+├── agents/                # AI role definitions
+│   ├── architect.md      # System Architect
+│   ├── coder.md          # TDD Developer
+│   ├── devops.md         # DevOps Engineer
+│   ├── doc-writer.md     # Technical Writer
+│   ├── gemini-analyzer.md # Gemini CLI Manager
+│   ├── product-owner.md  # Product Owner
+│   ├── reviewer.md       # Code Reviewer
+│   └── tester.md         # QA Engineer
+└── output/               # Working output directory
+    ├── arch/            # Architecture design
+    ├── deploy/          # Deployment configs
+    ├── docs/            # Project documentation
+    ├── prd/             # Product requirements
+    ├── review/          # Review reports
+    ├── src/             # Source code
+    └── tests/           # Test files
 ```
 
-## 🎯 角色分工
+## 🎯 Agent Roles
 
-1. **产品负责人 (product-owner)**: 需求分解和验收标准
-2. **架构师 (architect)**: 技术选型和架构设计
-3. **开发者 (coder)**: TDD 开发和代码实现
-4. **测试工程师 (tester)**: 测试用例编写和执行
-5. **DevOps 工程师 (devops)**: 容器化和 CI/CD 配置
-6. **文档编写者 (doc-writer)**: 项目文档和用户手册
-7. **代码审查者 (reviewer)**: 质量控制和重构建议
+1. **Product Owner**: Requirements breakdown and acceptance criteria
+2. **Architect**: Technical selection and architecture design
+3. **Coder**: TDD development and code implementation
+4. **Tester**: Test case writing and execution
+5. **DevOps Engineer**: Containerization and CI/CD configuration
+6. **Technical Writer**: Project documentation and user guides
+7. **Code Reviewer**: Quality control and refactoring suggestions
 
-## 📋 开发流程
+## 📋 Development Process
 
-1. **规划与分阶段**: 将复杂工作分解为 3-5 个阶段
-2. **理解现有代码**: 研究代码库中的现有模式
-3. **测试驱动**: 先写测试，再实现功能
-4. **重构优化**: 在测试通过的前提下清理代码
-5. **质量门禁**: 确保每次提交都符合标准
+1. **Planning & Staging**: Break complex work into 3-5 stages
+2. **Understand Existing Code**: Study patterns in the codebase
+3. **Test-Driven**: Write tests first, then implement features
+4. **Refactor**: Clean up code with tests passing
+5. **Quality Gates**: Ensure every commit meets standards
 
-## 🛠️ 使用方法
+## 🛠️ Usage
 
-1. 在 `idea.txt` 中描述你的项目需求
-2. 根据需要调整 `run.json` 中的工作流程
-3. 运行框架开始自动化开发流程
-4. 在 `output/` 目录查看生成的各类文件
+1. Describe your project requirements in `idea.txt`
+2. Adjust the workflow in `run.json` as needed
+3. Run the framework to start automated development
+4. View generated files in the `output/` directory
 
-## 📖 核心原则
+## 📖 Core Principles
 
-- **增量进步**: 小步快跑，每次提交都是可工作的
-- **学习现有代码**: 研究现有模式再动手
-- **务实至上**: 适应项目实际，避免教条
-- **意图明确**: 宁愿无聊，不要聪明
+- **Incremental Progress**: Small steps, every commit works
+- **Learn from Existing Code**: Study patterns before implementing
+- **Pragmatic Over Dogmatic**: Adapt to project reality
+- **Clear Intent Over Clever Code**: Be boring and obvious
 
-## ⚠️ 重要提醒
+## ⚠️ Important Reminders
 
-- 最多尝试 3 次，失败后必须停下来重新评估
-- 永远不要禁用测试，而是修复它们
-- 每次提交必须编译成功并通过所有测试
-- 遵循项目的格式化和 linting 规则
+- Maximum 3 attempts per issue, then stop and reassess
+- Never disable tests, always fix them
+- Every commit must compile and pass all tests
+- Follow project formatting and linting rules
 
-## 📝 许可证
+## 📝 License
 
-该项目遵循 MIT 许可证。
+This project is licensed under the MIT License.

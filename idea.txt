@@ -1,1 +1,1 @@
-一个命令行待办事项工具，支持增删改查和 JSON 导出。
+A command-line todo tool that supports CRUD operations and JSON export.
