@@ -2,19 +2,19 @@
 
 ## Purpose
 
-This folder defines specialized Claude Code agents with clear, single‑purpose roles. We delegate large‑scale analysis to Gemini CLI and mechanical edits to Codex CLI, with core development tasks handled by Claude Code agents using the Sonnet model.
+This folder defines specialized Claude Code agents with clear, single‑purpose roles. We delegate large‑scale analysis to Gemini CLI and mechanical edits to Codex CLI, with core development tasks handled by Claude Code agents using the Opus model.
 
 ## Agents
 
-- System Architect (`agents/system-architect.md`): Architectural guidance, context analysis, task decomposition. Uses Claude Code + Sonnet. No coding/tests/docs.
-- Fullstack Developer (`agents/fullstack-developer.md`): Feature implementation and fixes. Uses Claude Code + Sonnet. No tests/docs/review.
-- Test Developer (`agents/test-developer.md`): Comprehensive test coverage including unit tests (`test/unit/`), integration tests (`test/integration/`), and end-to-end verification. Uses Claude Code + Sonnet.
+- System Architect (`agents/system-architect.md`): Architectural guidance, context analysis, task decomposition. Uses Claude Code + Opus. No coding/tests/docs.
+- Fullstack Developer (`agents/fullstack-developer.md`): Feature implementation and fixes. Uses Claude Code + Opus. No tests/docs/review.
+- Test Developer (`agents/test-developer.md`): Comprehensive test coverage including unit tests (`test/unit/`), integration tests (`test/integration/`), and end-to-end verification. Uses Claude Code + Opus.
 - Docs Maintainer (`agents/docs-maintainer.md`): Project and module documentation, consistency, cross‑references. Uses Codex CLI.
 - Code Reviewer (`agents/code-reviewer.md`): Git‑based review for standards and architectural consistency. Uses Codex CLI.
 - DevOps Engineer (`agents/devops-engineer.md`): Dependency governance, environment setup, CI/CD pipeline tasks. Uses Codex CLI + Bash.
 - Gemini Analyzer (`agents/gemini-analyzer.md`): CLI wrapper that builds and runs Gemini commands, returns raw output only.
 
-**Note**: All Claude Code agents use the Sonnet model for optimal performance and quality.
+**Note**: All Claude Code agents use the Opus model for optimal performance and quality.
 
 ## Workflow (Typical)
 
@@ -66,7 +66,7 @@ Agents that exclusively orchestrate Gemini or Codex workflows may omit the `mode
 
 ## Tool Assignment
 
-- **Claude Code + Sonnet**: System Architect, Fullstack Developer, Test Developer
+- **Claude Code + Opus**: System Architect, Fullstack Developer, Test Developer
   - Used for complex architectural design, feature implementation, and comprehensive test development
   - Leverages full Claude Code capabilities for comprehensive tasks
 

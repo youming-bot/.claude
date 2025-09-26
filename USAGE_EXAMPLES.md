@@ -49,7 +49,10 @@ claude -f .claude/agents/code-reviewer.md
 
 ### 3. 核心概念
 
-- **Agent**: 一个专门处理特定开发任务（如架构设计、编码、测试）的 AI 实体。
+- **Agent**: 一个专门处理特定开发任务（如架构设计、编码、测试）的 AI 实体。使用不同的模型和工具：
+  - **Opus 模型 + Claude Code**: System Architect, Fullstack Developer, Test Developer, DevOps Engineer, Docs Maintainer
+  - **Codex CLI**: Code Reviewer
+  - **Bash**: Gemini Analyzer
 - **`handoff.md`**: Agent 之间交接工作的核心文档，记录任务状态、产出和上下文。
 
 ---
@@ -172,13 +175,14 @@ EOF
 
 ### Agent 选择策略
 
-| 任务类型       | 推荐流程                                                     | 说明                       |
-| :------------- | :----------------------------------------------------------- | :------------------------- |
-| **新功能开发** | `System Architect` → `Fullstack Developer` → `Code Reviewer` | 标准、完整的开发流程。     |
-| **Bug 修复**   | `Fullstack Developer` → `Code Reviewer`                      | 快速定位问题并修复。       |
-| **代码重构**   | `System Architect` → `Fullstack Developer` → `Code Reviewer` | 确保重构不偏离架构目标。   |
-| **补充测试**   | `Test Developer`         | 提升代码库的全面测试覆盖率。   |
-| **文档维护**   | `Docs Maintainer`                                            | 保持文档的实时性和准确性。 |
+| 任务类型       | 推荐流程                                                     | 模型和工具                          | 说明                       |
+| :------------- | :----------------------------------------------------------- | :----------------------------------- | :------------------------- |
+| **新功能开发** | `System Architect` → `Fullstack Developer` → `Code Reviewer` | Opus (Claude Code) → Opus (Claude Code) → Codex CLI | 标准、完整的开发流程。     |
+| **Bug 修复**   | `Fullstack Developer` → `Code Reviewer`                      | Opus (Claude Code) → Codex CLI      | 快速定位问题并修复。       |
+| **代码重构**   | `System Architect` → `Fullstack Developer` → `Code Reviewer` | Opus (Claude Code) → Opus (Claude Code) → Codex CLI | 确保重构不偏离架构目标。   |
+| **补充测试**   | `Test Developer` → `Code Reviewer`                          | Opus (Claude Code) → Codex CLI      | 提升代码库的全面测试覆盖率。   |
+| **文档维护**   | `Docs Maintainer` → `Code Reviewer`                          | Opus (Claude Code) → Codex CLI      | 保持文档的实时性和准确性。 |
+| **代码库分析** | `Gemini Analyzer`                                            | Bash + Gemini CLI                   | 大规模代码分析和模式识别。 |
 
 ### `handoff.md` 编写标准
 
@@ -214,8 +218,8 @@ EOF
 ### 团队协作模式
 
 - **顺序模式 (推荐)**: `A -> B -> C`，任务按顺序在 Agent 间流转，流程清晰。
-- **并行模式 (大型项目)**: `A -> [B, C] -> D`，架构师分解任务后，由多个开发 Agent 并行处理不同模块。
-- **迭代模式 (敏捷开发)**: `(A+B) -> (B+C) -> D`，在短周期内快速迭代，多个 Agent 紧密协作。
+- **并行模式 (大型项目)**: `System Architect -> [Fullstack Developer, Test Developer] -> Code Reviewer`，架构师分解任务后，开发和测试并行进行。
+- **迭代模式 (敏捷开发)**: `(System Architect + Fullstack Developer) -> (Fullstack Developer + Test Developer) -> Code Reviewer`，在短周期内快速迭代，多个 Agent 紧密协作。
 
 ---
 
@@ -271,6 +275,7 @@ jobs:
 - **质量内建**: 专业的代码审查 Agent 确保了代码的健壮性。
 - **高度可扩展**: 可以方便地定义新的 Agent 和规则以适应不同项目的需求。
 - **高效协作**: `handoff.md` 机制确保了信息在不同角色间无损流转。
+- **工具优化**: Opus 模型提供强大的推理能力，配合专门的 CLI 工具（Codex CLI、Bash）处理特定任务。
 
 ### 成功关键
 

@@ -1,7 +1,7 @@
 ---
 name: fullstack-developer
 description: Use this agent when implementing specific feature development tasks. Focuses on business logic implementation and feature development, not responsible for test case maintenance. This agent fully understands task objectives and project context before development.
-model: sonnet
+model: opus
 color: blue
 tools: Claude Code
 ---

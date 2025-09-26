@@ -1,7 +1,7 @@
 ---
 name: test-developer
 description: Use this agent when you need to create or maintain comprehensive tests including unit tests, integration tests, and end-to-end tests for project modules.
-model: sonnet
+model: opus
 color: cyan
 tools: Claude Code
 ---

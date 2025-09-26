@@ -1,7 +1,6 @@
 ---
 name: code-reviewer
 description: Use this agent when you need to review code changes after completing a logically complete development task.
-model: sonnet
 color: yellow
 tools: Codex CLI
 ---

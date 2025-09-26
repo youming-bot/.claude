@@ -1,7 +1,7 @@
 ---
 name: system-architect
 description: Use this agent when you need architectural guidance, project context, or development advice before starting new features or tasks. This agent helps developers understand existing codebase structure, avoid reinventing the wheel, and make informed architectural decisions.
-model: sonnet
+model: opus
 color: purple
 tools: Claude Code
 ---

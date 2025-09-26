@@ -4,6 +4,19 @@
 
 This directory centralizes project-wide standards that every agent must consult before beginning work or handing off tasks. Treat it as the single source of truth for development, testing, documentation, review, and operations policies.
 
+## Agent Tools & Models
+
+### Claude Code Agents (using Opus model)
+- **System Architect**: `agents/system-architect.md` - Uses Claude Code tools
+- **Fullstack Developer**: `agents/fullstack-developer.md` - Uses Claude Code tools  
+- **Test Developer**: `agents/test-developer.md` - Uses Claude Code tools
+- **Docs Maintainer**: `agents/docs-maintainer.md` - Uses Claude Code tools
+- **DevOps Engineer**: `agents/devops-engineer.md` - Uses Claude Code tools
+
+### Specialized CLI Agents
+- **Code Reviewer**: `agents/code-reviewer.md` - Uses Codex CLI
+- **Gemini Analyzer**: `agents/gemini-analyzer.md` - Uses Bash for Gemini CLI orchestration
+
 ## Navigation
 
 - `coding-style.md` – Language conventions, formatting, and linting expectations
