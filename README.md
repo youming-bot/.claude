@@ -10,12 +10,22 @@ A structured software development framework based on Claude AI, implementing com
 - **Bilingual Processing**: English for internal processing, Chinese for outputs
 - **Test-Driven**: Emphasis on TDD methodology
 - **Reversible Design**: All technical decisions consider reversibility
+- **MCP Integration**: Built-in Model Context Protocol (MCP) servers for enhanced capabilities
+
+### MCP Servers Enabled
+
+The framework includes pre-configured MCP servers to enhance development capabilities:
+
+- **Context7**: Enhanced context management for complex development scenarios
+- **Sequential Thinking**: Structured reasoning and problem-solving
+- **Chrome DevTools**: Browser debugging and web development tools
 
 ## 📁 Project Structure
 
 ```
 .claude/
 ├── CLAUDE.md              # Core development guidelines
+├── config.json            # MCP servers configuration
 ├── idea.txt               # Project requirements input
 ├── run.json               # Workflow configuration
 └── agents/                # AI role definitions
