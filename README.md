@@ -25,7 +25,7 @@ The framework includes pre-configured MCP servers to enhance development capabil
 ```
 .claude/
 ├── CLAUDE.md              # Core development guidelines
-├── config.json            # MCP servers configuration
+├── mcp_settings.json       # MCP servers configuration
 ├── idea.txt               # Project requirements input
 ├── run.json               # Workflow configuration
 └── agents/                # AI role definitions
