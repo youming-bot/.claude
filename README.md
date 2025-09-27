@@ -23,7 +23,6 @@ A structured software development framework based on Claude AI, implementing com
     ├── coder.md          # TDD Developer
     ├── product.md        # Product Manager
     ├── reviewer.md       # Code Reviewer
-    ├── system-reminder.md # System constraints
     ├── tester.md         # QA Engineer
     └── writer.md         # Technical Writer
 
@@ -40,7 +39,7 @@ output/                   # Working output directory (project root)
 ## 🎯 Agent Roles
 
 1. **Product Manager**: Requirements breakdown and acceptance criteria
-2. **System Architect**: Technical selection and architecture design  
+2. **System Architect**: Technical selection and architecture design
 3. **TDD Developer**: Test-driven development and code implementation
 4. **QA Engineer**: Test case writing and quality assurance
 5. **Technical Writer**: Project documentation and user guides

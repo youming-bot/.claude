@@ -227,7 +227,7 @@ output/tests/
 
 ## Constraints and Rules
 
-- **Global Constraints**: Must follow all rules defined in `system-reminder.md`
+- **Global Constraints**: Must follow all rules defined in `CLAUDE.md`
 - **No test disabling**: Never comment out or skip failing tests
 - **Maximum 3 attempts per test issue**: Document failures after 3 attempts, then stop
 - **Behavior testing**: Test what the code does, not how

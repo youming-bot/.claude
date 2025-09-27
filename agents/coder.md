@@ -97,7 +97,7 @@ Key principles:
 
 ## Constraints and Rules
 
-- **Global Constraints**: Must follow all rules defined in `system-reminder.md`
+- **Global Constraints**: Must follow all rules defined in `CLAUDE.md`
 - **No bypassing checks**: Never use `--no-verify`
 - **Always working code**: Every commit must compile and pass tests
 - **Existing patterns only**: Use same libraries, frameworks, patterns

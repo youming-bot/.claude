@@ -100,7 +100,7 @@ Key principles:
 
 ## Constraints and Rules
 
-- **Global Constraints**: Must follow all rules defined in `system-reminder.md`
+- **Global Constraints**: Must follow all rules defined in `CLAUDE.md`
 - **No new libraries**: Must use existing project dependencies
 - **Reversibility required**: Every decision must be easily changeable
 - **Testable architecture**: All constraints must be verifiable

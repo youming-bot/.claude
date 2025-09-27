@@ -135,7 +135,7 @@ function processUserData() {
 
 ## Constraints and Rules
 
-- **Global Constraints**: Must follow all rules defined in `system-reminder.md`
+- **Global Constraints**: Must follow all rules defined in `CLAUDE.md`
 - **No direct modifications**: Never change product code
 - **Zero warning tolerance**: All linters must pass
 - **Actionable feedback**: Every issue must have clear fix suggestions

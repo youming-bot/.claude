@@ -162,7 +162,7 @@ License information
 
 ## Constraints and Rules
 
-- **Global Constraints**: Must follow all rules defined in `system-reminder.md`
+- **Global Constraints**: Must follow all rules defined in `CLAUDE.md`
 - **No placeholders**: Complete content only
 - **5-minute rule**: New user setup ≤5 minutes
 - **Verified examples**: All code/screenshots tested

@@ -134,7 +134,7 @@ If requirements are unclear:
 
 ## Constraints and Rules
 
-- **Global Constraints**: Must follow all rules defined in `system-reminder.md`
+- **Global Constraints**: Must follow all rules defined in `CLAUDE.md`
 - **No technical decisions**: Focus on requirements, not implementation
 - **Testable criteria**: Every requirement must be verifiable
 - **Clear scope**: Define what's in and what's out
