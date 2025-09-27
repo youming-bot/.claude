@@ -1,1 +1,6 @@
-A command-line todo tool that supports CRUD operations and JSON export.
+# Project Requirements
+
+Describe your project idea here.
+
+Example:
+Create a simple task management application with user registration, login, task creation, completion marking, and task deletion. Use Next.js 15 + shadcn + Tailwind CSS + TypeScript + Drizzle + Neon + Better Auth technology stack.

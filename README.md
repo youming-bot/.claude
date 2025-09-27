@@ -4,7 +4,7 @@ A structured software development framework based on Claude AI, implementing com
 
 ## 🚀 Features
 
-- **Multi-role Collaboration**: 7 specialized AI development roles
+- **Multi-role Collaboration**: 6 specialized AI development roles
 - **Structured Process**: Complete development flow from requirements to deployment
 - **Quality Control**: Strict 3-attempt failure stop principle
 - **Bilingual Processing**: English for internal processing, Chinese for outputs
@@ -16,36 +16,39 @@ A structured software development framework based on Claude AI, implementing com
 ```
 .claude/
 ├── CLAUDE.md              # Core development guidelines
-├── idea.txt               # Project requirements
+├── idea.txt               # Project requirements input
 ├── run.json               # Workflow configuration
-├── agents/                # AI role definitions
-│   ├── architect.md      # System Architect
-│   ├── coder.md          # TDD Developer
-│   ├── devops.md         # DevOps Engineer
-│   ├── doc-writer.md     # Technical Writer
-│   ├── gemini-analyzer.md # Gemini CLI Manager
-│   ├── product-owner.md  # Product Owner
-│   ├── reviewer.md       # Code Reviewer
-│   └── tester.md         # QA Engineer
-└── output/               # Working output directory
-    ├── arch/            # Architecture design
-    ├── deploy/          # Deployment configs
-    ├── docs/            # Project documentation
-    ├── prd/             # Product requirements
-    ├── review/          # Review reports
-    ├── src/             # Source code
-    └── tests/           # Test files
+└── agents/                # AI role definitions
+    ├── architect.md      # System Architect
+    ├── coder.md          # TDD Developer
+    ├── product.md        # Product Manager
+    ├── reviewer.md       # Code Reviewer
+    ├── system-reminder.md # System constraints
+    ├── tester.md         # QA Engineer
+    └── writer.md         # Technical Writer
+
+output/                   # Working output directory (project root)
+├── arch/                # Architecture design
+├── deploy/              # Deployment configs
+├── docs/                # Project documentation
+├── prd/                 # Product requirements
+├── review/              # Review reports
+├── src/                 # Source code
+└── tests/               # Test files
 ```
 
 ## 🎯 Agent Roles
 
-1. **Product Owner**: Requirements breakdown and acceptance criteria
-2. **Architect**: Technical selection and architecture design
-3. **Coder**: TDD development and code implementation
-4. **Tester**: Test case writing and execution
-5. **DevOps Engineer**: Containerization and CI/CD configuration
-6. **Technical Writer**: Project documentation and user guides
-7. **Code Reviewer**: Quality control and refactoring suggestions
+1. **Product Manager**: Requirements breakdown and acceptance criteria
+2. **System Architect**: Technical selection and architecture design  
+3. **TDD Developer**: Test-driven development and code implementation
+4. **QA Engineer**: Test case writing and quality assurance
+5. **Technical Writer**: Project documentation and user guides
+6. **Code Reviewer**: Quality control and refactoring suggestions
+
+### Core Components
+
+- **System Reminder**: Enforces quality gates and constraints across all agents
 
 ## 📋 Development Process
 
@@ -57,10 +60,30 @@ A structured software development framework based on Claude AI, implementing com
 
 ## 🛠️ Usage
 
-1. Describe your project requirements in `idea.txt`
-2. Adjust the workflow in `run.json` as needed
-3. Run the framework to start automated development
-4. View generated files in the `output/` directory
+### Quick Start
+
+1. **Describe Requirements**: Edit `idea.txt` with your project requirements
+2. **Configure Workflow**: Adjust agent sequence in `run.json` if needed
+3. **Run Development**: Execute the framework to start automated development
+4. **Review Output**: Check generated files in the `output/` directory
+
+### Example Workflow
+
+```bash
+# Edit project requirements
+vim .claude/idea.txt
+
+# Run the agent system
+claude-code run
+
+# View results
+ls -la output/
+```
+
+### Agent Flow
+
+The agents execute in sequence:
+1. **Product** → **Architect** → **Coder** → **Tester** → **Writer** → **Reviewer**
 
 ## 📖 Core Principles
 
@@ -71,10 +94,17 @@ A structured software development framework based on Claude AI, implementing com
 
 ## ⚠️ Important Reminders
 
+### Quality Gates
 - Maximum 3 attempts per issue, then stop and reassess
 - Never disable tests, always fix them
 - Every commit must compile and pass all tests
 - Follow project formatting and linting rules
+
+### System Constraints
+- **Bilingual Processing**: English for internal, Chinese for external
+- **Reversible Design**: All technical decisions must be reversible
+- **TDD First**: Write tests before implementation
+- **Incremental Progress**: Small, working changes only
 
 ## 📝 License
 

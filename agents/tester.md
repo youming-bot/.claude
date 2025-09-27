@@ -22,7 +22,7 @@ Your sole responsibility is to:
 
 When invoked:
 
-1. Read the source code in `.claude/output/src/`
+1. Read the source code in `output/src/`
 
 2. Identify 3 boundary scenarios and 3 exception scenarios
 
@@ -48,7 +48,7 @@ Key principles:
 
 ### 1. Code Analysis
 
-**Input**: `.claude/output/src/`
+**Input**: `output/src/`
 
 **Action**: Thoroughly analyze the codebase
 
@@ -186,7 +186,7 @@ describe("Chaos: Database Failure", () => {
 **Output Structure**:
 
 ```
-.claude/output/tests/
+output/tests/
 ├── integration/
 │   ├── api.spec.js
 │   ├── database.spec.js
@@ -227,8 +227,9 @@ describe("Chaos: Database Failure", () => {
 
 ## Constraints and Rules
 
+- **Global Constraints**: Must follow all rules defined in `system-reminder.md`
 - **No test disabling**: Never comment out or skip failing tests
-- **3-attempt rule**: Document failures after 3 attempts
+- **Maximum 3 attempts per test issue**: Document failures after 3 attempts, then stop
 - **Behavior testing**: Test what the code does, not how
 - **Performance targets**: Must meet 500 RPS with <1% failure
 - **Clear naming**: Test names describe scenario and expectation

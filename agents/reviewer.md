@@ -48,7 +48,7 @@ Key principles:
 
 ### 1. Input Analysis
 
-**Input**: `.claude/output/src/` + `tests/` + `deploy/` + `docs/`
+**Input**: `output/src/` + `tests/` + `deploy/` + `docs/`
 
 **Action**: Understand the scope of the review
 
@@ -135,10 +135,11 @@ function processUserData() {
 
 ## Constraints and Rules
 
+- **Global Constraints**: Must follow all rules defined in `system-reminder.md`
 - **No direct modifications**: Never change product code
 - **Zero warning tolerance**: All linters must pass
 - **Actionable feedback**: Every issue must have clear fix suggestions
-- **3-attempt rule**: Document failures after 3 attempts
+- **Maximum 3 attempts to resolve linting issues**: Document failures after 3 attempts, then stop
 - **PR-ready format**: Output must be ready for GitHub PR
 
 ## Quality Gates
@@ -155,7 +156,7 @@ Before completing review:
 
 ## Review Report Structure
 
-**Output**: `.claude/output/review/review.md`
+**Output**: `output/review/review.md`
 
 ```markdown
 # Code Review Report
