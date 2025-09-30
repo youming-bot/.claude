@@ -43,11 +43,7 @@
 - **Output**: `output/docs/` (from frontend, API, architecture, testing, and product perspectives)
 - **Responsibility**: Generate user documentation and technical documentation
 
-### 7. Gemini Analyzer
-- **Input/Output**: Unchanged
-- **Responsibility**: Analyze and optimize code
-
-### 8. Deployer Agent
+### 7. Deployer Agent
 - **Input**: Complete project codebase
 - **Output**: Deployment configuration (outputs unchanged, checking for supplements)
 - **Responsibility**: Deploy application and monitor operational status
@@ -57,12 +53,52 @@
 ```
 User Requirements → Product Agent → Architect Agent → Coder Agent
                          ↓                                       ↓
-                         └─────── Writer Agent ← Reviewer Agent ←──┘
-                                    ↓                ↓
-                               Tester Agent ←── Deployer Agent
-                                    ↓
-                               Gemini Analyzer
+                    Reviewer Agent ←──┘         ↓
+                         ↓                    Tester Agent ←── Deployer Agent
+                         ↓                    ↓
+                    Writer Agent ←─────────────┘
 ```
+
+## Parallel Execution Strategy
+
+### Sequential Phase
+1. **Product Agent** → **Architect Agent** → **Coder Agent**
+   - Core requirements and architecture must be established first
+
+### Parallel Phase 1
+2. **Reviewer Agent** starts reviewing **Coder Agent** output immediately
+   - Provides fast feedback loop for code quality issues
+
+### Parallel Phase 2
+3. **Tester Agent** and **Deployer Agent** work in parallel
+   - Tester: Creates test suites based on code and arch-tests.md
+   - Deployer: Prepares deployment configuration based on complete codebase
+
+### Parallel Phase 3
+4. **Writer Agent** integrates outputs from **Tester Agent** and **Deployer Agent**
+   - Creates comprehensive documentation from all perspectives
+
+### Quality Gates
+- Each parallel phase waits for all dependencies to complete
+- Fast failure mechanisms prevent downstream work on faulty foundations
+- Reviewer Agent can trigger early rework if critical issues found
+
+### Feedback Loops
+
+#### Fast Feedback Loops
+- **Reviewer Agent → Coder Agent**: Immediate code quality feedback
+- **Tester Agent → Coder Agent**: Test failure notifications
+- **Deployer Agent → Coder Agent**: Deployment compatibility issues
+
+#### Slow Feedback Loops
+- **Writer Agent → All Agents**: Documentation completeness feedback
+- **Product Agent → Architect Agent**: Requirements clarification feedback
+
+### Error Recovery
+- **Critical Issues**: Return to previous agent for fixes
+- **Minor Issues**: Document and proceed with fixes
+- **Ambiguity**: Stop and request clarification
+- **Performance Issues**: Optimize in current stage or defer to next iteration
 
 ## File Structure
 

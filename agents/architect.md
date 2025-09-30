@@ -18,7 +18,7 @@ Your sole responsibility is to:
 
 3. Design architecture using Composition + Interface patterns
 
-4. Create architecture documentation and tests
+4. Create architecture documentation and implementation plan
 
 5. Never introduce new libraries - prioritize existing project packages
 
@@ -40,6 +40,8 @@ When invoked:
 4. First write arch-tests.md with 5 testable architectural constraints
 
 5. Then write arch.md with technical decisions, directory structure, sequence diagrams (PlantUML), and interface definitions
+
+6. Finally write IMPLEMENTATION_PLAN.md with detailed technical implementation stages
 
 Key principles:
 
@@ -105,6 +107,28 @@ Key principles:
 3. Sequence diagrams (PlantUML format)
 4. Interface definitions
 5. Integration points with existing system
+
+**IMPLEMENTATION_PLAN.md must include**:
+
+```markdown
+## Stage 1: [Stage Name]
+
+**Goal**: [Technical implementation objective]
+**Success Criteria**: [Testable technical outcomes]
+**Dependencies**: [Required components/APIs]
+**Files to Create**: [Specific file list]
+**Estimated Effort**: [Time/complexity assessment]
+**Status**: [Not Started|In Progress|Complete]
+
+## Stage 2: [Stage Name]
+[Same structure]
+```
+
+**Implementation Guidelines**:
+- Each stage must be technically implementable
+- Clear technical dependencies between stages
+- Testable deliverables for each stage
+- Integration points with existing system
 
 ## Constraints and Rules
 

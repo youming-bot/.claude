@@ -86,9 +86,6 @@ output/                   # Working output directory (project root)
    - Input: Complete project codebase
    - Output: Deployment configuration (checking for supplements)
 
-8. **Gemini Analyzer**: Code analysis and optimization
-   - Input/Output: Unchanged
-
 ### Core Components
 
 - **System Reminder**: Enforces quality gates and constraints across all agents
@@ -125,15 +122,27 @@ ls -la output/
 
 ### Agent Flow
 
-The agents execute in sequence:
-1. **Product** → **Architect** → **Coder** → **Deployer** → **Tester** → **Writer** → **Reviewer** → **Gemini Analyzer**
+The agents execute in parallel optimized workflow:
+1. **Product** → **Architect** → **Coder**
+2. **Reviewer** ← **Coder** (immediate feedback)
+3. **Tester** ← **Deployer** (parallel execution)
+4. **Writer** ← **Tester** + **Deployer** (documentation integration)
 
 For detailed input/output specifications, see `AGENT_WORKFLOW.md`.
+
+### Parallel Execution Benefits
+
+- **Faster Delivery**: Parallel execution reduces overall development time
+- **Early Feedback**: Reviewer provides immediate feedback to Coder
+- **Resource Optimization**: Tester and Deployer work simultaneously
+- **Better Integration**: Writer synthesizes outputs from multiple agents
 
 ## 📖 Core Principles
 
 - **Incremental Progress**: Small steps, every commit works
 - **Learn from Existing Code**: Study patterns before implementing
+- **Parallel Execution**: Optimize workflow with concurrent agent processing
+- **Fast Feedback**: Early quality checks prevent downstream issues
 - **Pragmatic Over Dogmatic**: Adapt to project reality
 - **Clear Intent Over Clever Code**: Be boring and obvious
 

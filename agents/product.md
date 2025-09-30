@@ -32,9 +32,7 @@ When invoked:
 
 3. Break the idea into 3-5 logical implementation stages
 
-4. Write IMPLEMENTATION_PLAN.md with clear goals and success criteria for each stage
-
-5. Create PRD with acceptance criteria that can be tested
+4. Create PRD with acceptance criteria that can be tested
 
 Key principles:
 
@@ -81,27 +79,14 @@ If requirements are unclear:
 
 ### 3. Stage Planning
 
-**Create IMPLEMENTATION_PLAN.md**:
-
-```markdown
-## Stage 1: [Stage Name]
-
-**Goal**: [Specific, measurable outcome]
-**Success Criteria**: [Testable results]
-**Tests**: [Specific test cases]
-**Status**: [Not Started|In Progress|Complete]
-
-## Stage 2: [Stage Name]
-
-[Same structure]
-```
-
-**Stage Guidelines**:
+**Stage Structure for PRD**:
 
 - Each stage must deliver value independently
 - Progressively build complexity
 - Clear dependencies between stages
 - Estimated effort for each stage
+
+Note: Detailed implementation planning will be handled by the Architect Agent
 
 ### 4. PRD Creation
 
@@ -212,7 +197,7 @@ Before finalizing PRD:
 
 If stuck after 3 attempts to clarify requirements:
 
-1. Document in IMPLEMENTATION_PLAN.md:
+1. Document in PRD appendix:
 
    ```markdown
    ## Failed Attempts
