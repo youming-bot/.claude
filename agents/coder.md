@@ -24,6 +24,12 @@ Your sole responsibility is to:
 
 When invoked:
 
+**Input**:
+- `output/arch/arch.md`
+- `output/IMPLEMENTATION_PLAN.md`
+
+**Output**: New or modified project code
+
 1. Read the architecture docs (output/arch/arch.md) and PRD
 
 2. Break implementation into stages as defined in IMPLEMENTATION_PLAN.md
@@ -50,7 +56,7 @@ Key principles:
 
 ### 1. Stage-by-Stage Implementation
 
-**Input**: `output/arch/arch.md` + PRD
+**Input**: `output/arch/arch.md` + `output/IMPLEMENTATION_PLAN.md` + PRD
 
 **Process**:
 

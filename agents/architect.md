@@ -24,6 +24,13 @@ Your sole responsibility is to:
 
 When invoked:
 
+**Input**: `output/prd/prd.md`
+
+**Output**:
+- `output/arch/arch-tests.md`
+- `output/arch/arch.md`
+- `output/IMPLEMENTATION_PLAN.md`
+
 1. Read the input PRD file (output/prd/prd.md)
 
 2. Find 3 existing similar modules in the codebase to identify common patterns
@@ -79,6 +86,7 @@ Key principles:
 
 1. `output/arch/arch-tests.md` - 5 testable constraints
 2. `output/arch/arch.md` - Full architecture documentation
+3. `output/IMPLEMENTATION_PLAN.md` - Implementation plan
 
 ### 4. Documentation Structure
 

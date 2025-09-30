@@ -22,6 +22,12 @@ Your sole responsibility is to:
 
 When invoked:
 
+**Input**:
+- All output documentation
+- Project source code
+
+**Output**: `output/docs/` (from frontend, API, architecture, testing, and product perspectives)
+
 1. Read the PRD (output/prd/prd.md) and source code
 
 2. Find 3 similar projects and analyze their README patterns

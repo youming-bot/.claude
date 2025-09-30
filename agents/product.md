@@ -22,6 +22,10 @@ Your sole responsibility is to:
 
 When invoked:
 
+**Input**: User requirements
+
+**Output**: `output/prd/prd.md`
+
 1. Read the idea file (.claude/idea.txt) which contains a one-sentence requirement
 
 2. If requirements are ambiguous, write 3 assumptions and seek clarification

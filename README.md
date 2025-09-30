@@ -39,9 +39,18 @@ The framework includes pre-configured MCP servers to enhance development capabil
 
 output/                   # Working output directory (project root)
 ├── arch/                # Architecture design
+│   ├── arch.md          # Architecture design document
+│   ├── arch-tests.md   # Architecture test constraints
+│   └── IMPLEMENTATION_PLAN.md  # Implementation plan
 ├── deploy/              # Deployment configs
 ├── docs/                # Project documentation
+│   ├── frontend/        # Frontend documentation
+│   ├── api/             # API documentation
+│   ├── architecture/    # Architecture documentation
+│   ├── testing/         # Testing documentation
+│   └── product/         # Product documentation
 ├── prd/                 # Product requirements
+│   └── prd.md           # Product requirements document
 ├── review/              # Review reports
 ├── src/                 # Source code
 └── tests/               # Test files
@@ -50,12 +59,35 @@ output/                   # Working output directory (project root)
 ## 🎯 Agent Roles
 
 1. **Product Manager**: Requirements breakdown and acceptance criteria
+   - Input: User requirements
+   - Output: `output/prd/prd.md`
+
 2. **System Architect**: Technical selection and architecture design
+   - Input: `output/prd/prd.md`
+   - Output: `output/arch/arch.md`, `output/arch/arch-tests.md`, `output/IMPLEMENTATION_PLAN.md`
+
 3. **TDD Developer**: Test-driven development and code implementation
-4. **Cloudflare Deployment Specialist**: Deployment configuration and optimization
-5. **QA Engineer**: Test case writing and quality assurance
-6. **Technical Writer**: Project documentation and user guides
-7. **Code Reviewer**: Quality control and refactoring suggestions
+   - Input: `output/arch/arch.md`, `output/IMPLEMENTATION_PLAN.md`
+   - Output: New or modified project code
+
+4. **QA Engineer**: Test case writing and quality assurance
+   - Input: `output/arch/arch-tests.md`, complete project codebase
+   - Output: Test files (existing paths unchanged)
+
+5. **Technical Writer**: Project documentation and user guides
+   - Input: All output documentation, project source code
+   - Output: `output/docs/` (from multiple perspectives)
+
+6. **Code Reviewer**: Quality control and refactoring suggestions
+   - Input: Complete project codebase, all output documentation
+   - Output: Review report (existing outputs unchanged)
+
+7. **Cloudflare Deployment Specialist**: Deployment configuration and optimization
+   - Input: Complete project codebase
+   - Output: Deployment configuration (checking for supplements)
+
+8. **Gemini Analyzer**: Code analysis and optimization
+   - Input/Output: Unchanged
 
 ### Core Components
 
@@ -94,7 +126,9 @@ ls -la output/
 ### Agent Flow
 
 The agents execute in sequence:
-1. **Product** → **Architect** → **Coder** → **Deployer** → **Tester** → **Writer** → **Reviewer**
+1. **Product** → **Architect** → **Coder** → **Deployer** → **Tester** → **Writer** → **Reviewer** → **Gemini Analyzer**
+
+For detailed input/output specifications, see `AGENT_WORKFLOW.md`.
 
 ## 📖 Core Principles
 

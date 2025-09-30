@@ -22,6 +22,12 @@ Your sole responsibility is to:
 
 When invoked:
 
+**Input**:
+- Complete project codebase
+- All output documentation
+
+**Output**: Review report (existing outputs unchanged)
+
 1. Review all outputs: source code, tests, deployment configs, and documentation
 
 2. Execute project linting and formatting tools
@@ -48,7 +54,7 @@ Key principles:
 
 ### 1. Input Analysis
 
-**Input**: `output/src/` + `tests/` + `deploy/` + `docs/`
+**Input**: Complete project codebase (`output/src/` + `tests/` + `deploy/` + `docs/`)
 
 **Action**: Understand the scope of the review
 

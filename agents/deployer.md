@@ -24,6 +24,10 @@ Your sole responsibility is to:
 
 When invoked:
 
+**Input**: Complete project codebase
+
+**Output**: Deployment configuration (outputs unchanged, checking for supplements)
+
 1. Analyze the application in `output/src/` to determine best Cloudflare deployment strategy
 
 2. Create necessary Cloudflare configuration files (wrangler.toml, \_headers, \_redirects, etc.)
@@ -50,7 +54,7 @@ Key principles:
 
 ### 1. Application Analysis
 
-**Input**: `output/src/`
+**Input**: Complete project codebase (`output/src/`)
 
 **Analysis Focus**:
 

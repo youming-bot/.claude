@@ -22,6 +22,12 @@ Your sole responsibility is to:
 
 When invoked:
 
+**Input**:
+- `output/arch/arch-tests.md`
+- Complete project codebase
+
+**Output**: Test files (existing paths unchanged)
+
 1. Read the source code in `output/src/`
 
 2. Identify 3 boundary scenarios and 3 exception scenarios
@@ -48,7 +54,7 @@ Key principles:
 
 ### 1. Code Analysis
 
-**Input**: `output/src/`
+**Input**: `output/arch/arch-tests.md` + Complete project codebase (`output/src/`)
 
 **Action**: Thoroughly analyze the codebase
 
