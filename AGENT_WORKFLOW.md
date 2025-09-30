@@ -1,145 +1,112 @@
 # Agent Workflow
 
-## Agent Input/Output Specifications
+## Simplified Agent Workflow
+
+### Core Principles
+- Simple and easy to use, minimal configuration required
+- Dependency management based on file existence
+- Unified error handling mechanism
+- Multi-platform deployment support
+
+## Agent Specifications
 
 ### 1. Product Agent
-- **Input**: User requirements
-- **Output**: `output/prd/prd.md`
-- **Responsibility**: Generate product requirements document from user requirements
+- **Input**: `.claude/idea.txt` (User requirements)
+- **Output**: `output/prd/prd.md` (Product requirements document)
+- **Responsibility**: Convert user requirements into structured product requirements
 
 ### 2. Architect Agent
 - **Input**: `output/prd/prd.md`
 - **Output**:
-  - `output/arch/arch-tests.md` (Architecture test documentation)
-  - `output/arch/arch.md` (Architecture design documentation)
-  - `output/IMPLEMENTATION_PLAN.md` (Implementation plan)
-- **Responsibility**: Design system architecture and create implementation plan
+  - `output/arch/arch.md` (Architecture design)
+  - `output/arch/IMPLEMENTATION_PLAN.md` (Implementation plan)
+- **Responsibility**: Design system architecture and implementation plan
 
 ### 3. Coder Agent
-- **Input**:
-  - `output/arch/arch.md`
-  - `output/IMPLEMENTATION_PLAN.md`
+- **Input**: `output/arch/arch.md`, `output/arch/IMPLEMENTATION_PLAN.md`
 - **Output**: New or modified project code
-- **Responsibility**: Implement code based on architecture design and implementation plan
+- **Responsibility**: Implement code based on architecture design
 
-### 4. Tester Agent
-- **Input**:
-  - `output/arch/arch-tests.md`
-  - Complete project codebase
-- **Output**: Test files (existing paths unchanged)
+### 4. Reviewer Agent
+- **Input**: Complete project codebase, `output/arch/arch.md`
+- **Output**: `output/feedback/review.md` (Code review report)
+- **Responsibility**: Review code quality and architecture compliance
+
+### 5. Tester Agent
+- **Input**: Complete project codebase, `output/arch/arch.md`
+- **Output**: Test files, `output/feedback/test_report.md`
 - **Responsibility**: Write and execute test cases
 
-### 5. Reviewer Agent
-- **Input**:
-  - Complete project codebase
-  - All output documentation
-- **Output**: Review report (existing outputs unchanged)
-- **Responsibility**: Review code quality and documentation completeness
-
-### 6. Writer Agent
-- **Input**:
-  - All output documentation
-  - Project source code
-- **Output**: `output/docs/` (from frontend, API, architecture, testing, and product perspectives)
-- **Responsibility**: Generate user documentation and technical documentation
-
-### 7. Deployer Agent
+### 6. Deployer Agent
 - **Input**: Complete project codebase
-- **Output**: Deployment configuration (outputs unchanged, checking for supplements)
-- **Responsibility**: Deploy application and monitor operational status
+- **Output**: Deployment configuration files, `output/deploy/` (Deployment artifacts)
+- **Responsibility**: Select optimal deployment platform and deploy application
+
+### 7. Writer Agent
+- **Input**: All output documents and project source code
+- **Output**: `output/docs/README.md` (Main documentation)
+- **Responsibility**: Generate user documentation and technical documentation
 
 ## Workflow Diagram
 
 ```
-User Requirements → Product Agent → Architect Agent → Coder Agent
-                         ↓                                       ↓
-                    Reviewer Agent ←──┘         ↓
-                         ↓                    Tester Agent ←── Deployer Agent
-                         ↓                    ↓
-                    Writer Agent ←─────────────┘
+.idea.txt → Product → Architect → Coder
+                 ↓                      ↓
+              Reviewer               Tester
+                 ↓                      ↓
+                 Writer ←─────────── Deployer
 ```
 
-## Parallel Execution Strategy
+## Parallel Execution
 
 ### Sequential Phase
-1. **Product Agent** → **Architect Agent** → **Coder Agent**
+1. **Product → Architect → Coder**
    - Core requirements and architecture must be established first
 
-### Parallel Phase 1
-2. **Reviewer Agent** starts reviewing **Coder Agent** output immediately
-   - Provides fast feedback loop for code quality issues
+### Parallel Phase
+2. **Reviewer, Tester, Deployer, Writer** work simultaneously
+   - Reviewer: Review code quality
+   - Tester: Write test cases
+   - Deployer: Prepare deployment configuration
+   - Writer: Generate documentation
 
-### Parallel Phase 2
-3. **Tester Agent** and **Deployer Agent** work in parallel
-   - Tester: Creates test suites based on code and arch-tests.md
-   - Deployer: Prepares deployment configuration based on complete codebase
+## Dependencies
 
-### Parallel Phase 3
-4. **Writer Agent** integrates outputs from **Tester Agent** and **Deployer Agent**
-   - Creates comprehensive documentation from all perspectives
+- **Parallel agents**: Judge dependencies based on input file existence
+- **Status synchronization**: Coordinate agent execution through status files
+- **Error handling**: Simple retry mechanism
+- **Quality standards**: Unified quality gate (9.0 target score)
 
-### Quality Gates
-- Each parallel phase waits for all dependencies to complete
-- Fast failure mechanisms prevent downstream work on faulty foundations
-- Reviewer Agent can trigger early rework if critical issues found
+### Status Synchronization Mechanism
 
-### Feedback Loops
-
-#### Fast Feedback Loops
-- **Reviewer Agent → Coder Agent**: Immediate code quality feedback
-- **Tester Agent → Coder Agent**: Test failure notifications
-- **Deployer Agent → Coder Agent**: Deployment compatibility issues
-
-#### Slow Feedback Loops
-- **Writer Agent → All Agents**: Documentation completeness feedback
-- **Product Agent → Architect Agent**: Requirements clarification feedback
-
-### Error Recovery
-- **Critical Issues**: Return to previous agent for fixes (create .failed status file)
-- **Minor Issues**: Document and proceed with fixes (lower quality gate thresholds)
-- **Ambiguity**: Stop and request clarification (create .failed status with recovery suggestions)
-- **Performance Issues**: Optimize in current stage or defer to next iteration
-
-### Status Synchronization
-- Each agent creates `.complete` status file upon successful completion
-- Failed agents create `.failed` status file with recovery suggestions
-- Downstream agents poll for dependency status every 30 seconds
-- Quality scores (9.5-10.0 target) included in status files
-
-### Enhanced Quality Gates
-- **Blocker**: Prevents progression to next agent
-- **Warning**: Allows progression with documented risks
-- **Info**: Noted for future improvement
-- **Fast Feedback**: Real-time notifications for critical issues
+- **Status files**: Create `output/status/{agent}.complete` file after each agent completes
+- **Check interval**: Check dependency status every 10 seconds (configurable)
+- **Timeout mechanism**: 5-minute timeout, maximum 3 retry attempts
+- **Dependency waiting**: Writer Agent waits for Tester and Deployer completion
 
 ## File Structure
 
 ```
+.claude/
+└── idea.txt                     # User requirements
+
 output/
-├── prd/
-│   └── prd.md                    # Product requirements document
-├── arch/
-│   ├── arch.md                  # Architecture design document
-│   ├── arch-tests.md           # Architecture test document
-│   └── IMPLEMENTATION_PLAN.md  # Implementation plan
-├── src/                         # Source code
-├── tests/                       # Test files
+├── prd/prd.md                   # Product requirements document
+├── arch/                        # Architecture design
+│   ├── arch.md                  # Architecture document
+│   └── IMPLEMENTATION_PLAN.md   # Implementation plan
 ├── deploy/                      # Deployment configuration
-├── docs/                        # Generated documentation
-│   ├── frontend/               # Frontend documentation
-│   ├── api/                    # API documentation
-│   ├── architecture/           # Architecture documentation
-│   ├── testing/               # Testing documentation
-│   └── product/               # Product documentation
-├── status/                      # Agent status files
-│   ├── product.complete        # Product Agent completion
-│   ├── architect.complete      # Architect Agent completion
-│   ├── coder.complete          # Coder Agent completion
-│   ├── reviewer.complete       # Reviewer Agent completion
-│   ├── tester.complete         # Tester Agent completion
-│   ├── deployer.complete       # Deployer Agent completion
-│   └── writer.complete         # Writer Agent completion
-└── feedback/                    # Fast feedback files
-    ├── coder_immediate.review   # Immediate feedback to Coder
-    └── quality_scores.json      # Overall quality assessment
+├── docs/README.md               # Project documentation
+├── feedback/                    # Feedback reports
+│   ├── review.md                # Review report
+│   ├── test_report.md           # Test report
+│   └── deployment_report.md     # Deployment report
+└── status/                      # Agent status files
+    ├── product.complete         # Product Agent completion status
+    ├── architect.complete       # Architect Agent completion status
+    ├── coder.complete           # Coder Agent completion status
+    ├── reviewer.complete        # Reviewer Agent completion status
+    ├── tester.complete          # Tester Agent completion status
+    ├── deployer.complete        # Deployer Agent completion status
+    └── writer.complete          # Writer Agent completion status
 ```

@@ -33,7 +33,7 @@ When invoked:
 **Synchronization**:
 - Check `output/status/tester.complete` for Tester Agent completion
 - Check `output/status/deployer.complete` for Deployer Agent completion
-- Poll every 30 seconds until both dependencies are satisfied
+- Poll every 10 seconds (configurable via run.json) until both dependencies are satisfied
 
 **Documentation Process**:
 1. **Dependency Verification**: Ensure Tester and Deployer have completed

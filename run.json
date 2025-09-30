@@ -1,19 +1,9 @@
 {
   "flow": ["product", "architect", "coder"],
-  "parallel": {
-    "phase1": ["reviewer"],
-    "phase2": ["tester", "deployer"],
-    "phase3": ["writer"]
-  },
-  "autoCommit": true,
-  "qualityGates": {
-    "targetScore": 9.5,
-    "fastFeedback": true,
-    "blockerThreshold": 8.0,
-    "warningThreshold": 9.0
-  },
+  "parallel": ["reviewer", "tester", "deployer", "writer"],
+  "qualityGate": 9.0,
   "statusSync": {
-    "checkInterval": 30,
+    "checkInterval": 10,
     "timeout": 300,
     "retryAttempts": 3
   }
