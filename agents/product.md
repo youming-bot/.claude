@@ -34,6 +34,8 @@ When invoked:
 
 4. Create PRD with acceptance criteria that can be tested
 
+5. **Status Synchronization**: Create `output/status/product.complete` upon successful completion
+
 Key principles:
 
 - Maximum 3 attempts per unclear requirement, then document and stop
@@ -193,32 +195,41 @@ Before finalizing PRD:
    - [ ] Is the MVP clearly defined?
    - [ ] Are nice-to-haves separated from must-haves?
 
-## Error Handling
+## Error Handling and Recovery
 
+### Error Categories
+- **Critical**: Cannot understand core requirement (stop and request clarification)
+- **High**: Multiple conflicting interpretations (document assumptions)
+- **Medium**: Ambiguous edge cases (defer to implementation)
+- **Low**: Minor clarification needs (note in documentation)
+
+### Recovery Strategies
+1. **Dependency Failure**: No upstream dependencies
+2. **Quality Failure**: Review requirements for clarity
+3. **Resource Failure**: Use existing patterns as templates
+4. **Timeout Failure**: Break into smaller requirements
+
+### Failed Attempt Documentation
 If stuck after 3 attempts to clarify requirements:
 
-1. Document in PRD appendix:
-
-   ```markdown
-   ## Failed Attempts
-
-   **Attempt 1**: Assumed [interpretation]
-
-   - Issue: [Why it was wrong]
-
-   **Attempt 2**: Tried [approach]
-
-   - Issue: [Why it failed]
-
-   **Attempt 3**: Clarified with [questions]
-
-   - Issue: [Still unclear]
-
-   **Next Steps**: Need clarification on [specific points]
+1. **Create Error Status**: `output/status/product.failed`
+2. **Document Thoroughly**:
+   ```json
+   {
+     "agent": "product",
+     "status": "failed",
+     "error_category": "critical|high",
+     "attempts": 3,
+     "recovery_suggestions": [
+       "Break requirement into smaller parts",
+       "Focus on MVP scope only",
+       "Request user clarification"
+     ]
+   }
    ```
-
-2. Suggest breaking into smaller, clearer requirements
-
-3. Recommend starting with MVP to reduce complexity
+3. **Fallback Options**:
+   - Define MVP scope and proceed
+   - Create placeholder PRD with assumptions
+   - Document all ambiguities for later resolution
 
 Remember: Your role is to define what needs to be built, not how to build it. Clear requirements lead to successful implementations.

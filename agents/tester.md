@@ -38,6 +38,8 @@ When invoked:
 
 5. Create regression checklists that can be executed in CI
 
+6. **Status Synchronization**: Create `output/status/tester.complete` upon successful completion
+
 Key principles:
 
 - Maximum 3 attempts per test issue, then document and stop

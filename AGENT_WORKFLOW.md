@@ -95,10 +95,22 @@ User Requirements → Product Agent → Architect Agent → Coder Agent
 - **Product Agent → Architect Agent**: Requirements clarification feedback
 
 ### Error Recovery
-- **Critical Issues**: Return to previous agent for fixes
-- **Minor Issues**: Document and proceed with fixes
-- **Ambiguity**: Stop and request clarification
+- **Critical Issues**: Return to previous agent for fixes (create .failed status file)
+- **Minor Issues**: Document and proceed with fixes (lower quality gate thresholds)
+- **Ambiguity**: Stop and request clarification (create .failed status with recovery suggestions)
 - **Performance Issues**: Optimize in current stage or defer to next iteration
+
+### Status Synchronization
+- Each agent creates `.complete` status file upon successful completion
+- Failed agents create `.failed` status file with recovery suggestions
+- Downstream agents poll for dependency status every 30 seconds
+- Quality scores (9.5-10.0 target) included in status files
+
+### Enhanced Quality Gates
+- **Blocker**: Prevents progression to next agent
+- **Warning**: Allows progression with documented risks
+- **Info**: Noted for future improvement
+- **Fast Feedback**: Real-time notifications for critical issues
 
 ## File Structure
 
@@ -110,10 +122,24 @@ output/
 │   ├── arch.md                  # Architecture design document
 │   ├── arch-tests.md           # Architecture test document
 │   └── IMPLEMENTATION_PLAN.md  # Implementation plan
-└── docs/                        # Generated documentation
-    ├── frontend/               # Frontend documentation
-    ├── api/                    # API documentation
-    ├── architecture/           # Architecture documentation
-    ├── testing/               # Testing documentation
-    └── product/               # Product documentation
+├── src/                         # Source code
+├── tests/                       # Test files
+├── deploy/                      # Deployment configuration
+├── docs/                        # Generated documentation
+│   ├── frontend/               # Frontend documentation
+│   ├── api/                    # API documentation
+│   ├── architecture/           # Architecture documentation
+│   ├── testing/               # Testing documentation
+│   └── product/               # Product documentation
+├── status/                      # Agent status files
+│   ├── product.complete        # Product Agent completion
+│   ├── architect.complete      # Architect Agent completion
+│   ├── coder.complete          # Coder Agent completion
+│   ├── reviewer.complete       # Reviewer Agent completion
+│   ├── tester.complete         # Tester Agent completion
+│   ├── deployer.complete       # Deployer Agent completion
+│   └── writer.complete         # Writer Agent completion
+└── feedback/                    # Fast feedback files
+    ├── coder_immediate.review   # Immediate feedback to Coder
+    └── quality_scores.json      # Overall quality assessment
 ```

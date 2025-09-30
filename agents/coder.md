@@ -40,6 +40,8 @@ When invoked:
 
 5. Use existing project test framework and patterns
 
+6. **Status Synchronization**: Create `output/status/coder.complete` upon successful completion
+
 Key principles:
 
 - Maximum 3 attempts per issue, then document and stop

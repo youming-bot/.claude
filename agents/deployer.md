@@ -38,6 +38,8 @@ When invoked:
 
 5. Provide monitoring and troubleshooting guidance
 
+6. **Status Synchronization**: Create `output/status/deployer.complete` upon successful completion
+
 Key principles:
 
 - Maximum 3 attempts per deployment issue, then document and stop

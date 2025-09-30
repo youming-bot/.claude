@@ -43,6 +43,8 @@ When invoked:
 
 6. Finally write IMPLEMENTATION_PLAN.md with detailed technical implementation stages
 
+7. **Status Synchronization**: Create `output/status/architect.complete` upon successful completion
+
 Key principles:
 
 - Any technical selection must include reversibility assessment (low/medium/high)
