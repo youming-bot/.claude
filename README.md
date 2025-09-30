@@ -4,7 +4,7 @@ A structured software development framework based on Claude AI, implementing com
 
 ## 🚀 Features
 
-- **Multi-role Collaboration**: 6 specialized AI development roles
+- **Multi-role Collaboration**: 7 specialized AI development roles
 - **Structured Process**: Complete development flow from requirements to deployment
 - **Quality Control**: Strict 3-attempt failure stop principle
 - **Bilingual Processing**: English for internal processing, Chinese for outputs
@@ -31,6 +31,7 @@ The framework includes pre-configured MCP servers to enhance development capabil
 └── agents/                # AI role definitions
     ├── architect.md      # System Architect
     ├── coder.md          # TDD Developer
+    ├── deployer.md       # Cloudflare Deployment Specialist
     ├── product.md        # Product Manager
     ├── reviewer.md       # Code Reviewer
     ├── tester.md         # QA Engineer
@@ -51,9 +52,10 @@ output/                   # Working output directory (project root)
 1. **Product Manager**: Requirements breakdown and acceptance criteria
 2. **System Architect**: Technical selection and architecture design
 3. **TDD Developer**: Test-driven development and code implementation
-4. **QA Engineer**: Test case writing and quality assurance
-5. **Technical Writer**: Project documentation and user guides
-6. **Code Reviewer**: Quality control and refactoring suggestions
+4. **Cloudflare Deployment Specialist**: Deployment configuration and optimization
+5. **QA Engineer**: Test case writing and quality assurance
+6. **Technical Writer**: Project documentation and user guides
+7. **Code Reviewer**: Quality control and refactoring suggestions
 
 ### Core Components
 
@@ -92,7 +94,7 @@ ls -la output/
 ### Agent Flow
 
 The agents execute in sequence:
-1. **Product** → **Architect** → **Coder** → **Tester** → **Writer** → **Reviewer**
+1. **Product** → **Architect** → **Coder** → **Deployer** → **Tester** → **Writer** → **Reviewer**
 
 ## 📖 Core Principles
 
