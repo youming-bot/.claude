@@ -75,9 +75,9 @@ When invoked:
 ```json
 {
   "framework": "nextjs",
-  "buildCommand": "npm run build",
-  "devCommand": "npm run dev",
-  "installCommand": "npm install",
+  "buildCommand": "pnpm run build",
+  "devCommand": "pnpm run dev",
+  "installCommand": "pnpm install",
   "functions": {
     "app/api/**/*.ts": {
       "maxDuration": 30
@@ -94,7 +94,7 @@ When invoked:
 ```toml
 [build]
   publish = "out"
-  command = "npm run build && npm run export"
+  command = "pnpm run build && pnpm run export"
 
 [[redirects]]
   from = "/api/*"
@@ -112,7 +112,7 @@ compatibility_date = "2024-01-01"
 compatibility_flags = ["nodejs_compat"]
 
 [build]
-  command = "npm run build"
+  command = "pnpm run build"
 
 [env.production]
   vars = { ENVIRONMENT = "production" }
@@ -128,10 +128,10 @@ frontend:
   phases:
     preBuild:
       commands:
-        - npm ci
+        - pnpm install --frozen-lockfile
     build:
       commands:
-        - npm run build
+        - pnpm run build
   artifacts:
     baseDirectory: out
     files:

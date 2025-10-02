@@ -1,0 +1,99 @@
+{
+  "$schema": "./config.schema.json",
+  "version": "1.0.0",
+  "quality": {
+    "targetScore": 9.0,
+    "minScore": 7.0,
+    "maxAttempts": 3,
+    "scoring": {
+      "codeQuality": { "weight": 2.0, "description": "函数长度、命名、结构" },
+      "testCoverage": { "weight": 2.0, "description": "覆盖率、测试质量" },
+      "architectureCompliance": { "weight": 2.0, "description": "遵循架构设计" },
+      "toolCompliance": { "weight": 2.0, "description": "Linter、格式化、类型检查" },
+      "documentation": { "weight": 2.0, "description": "注释、API 文档" }
+    }
+  },
+  "coder": {
+    "maxFunctionLines": 40,
+    "minFunctionLines": 5,
+    "testCoverageTarget": 90,
+    "testCoverageMinimum": 80,
+    "allowMagicNumbers": false,
+    "commitMessageFormat": "^(feat|fix|docs|style|refactor|test|chore)\\(\\w+\\): .{1,72}$"
+  },
+  "tester": {
+    "performance": {
+      "targetRPS": 500,
+      "maxResponseTimeMs": 500,
+      "maxFailureRate": 0.01,
+      "loadTestDuration": "2m"
+    },
+    "coverage": {
+      "minimumBoundaryScenarios": 3,
+      "minimumExceptionScenarios": 3
+    },
+    "timeouts": {
+      "unitTestTimeout": 5000,
+      "integrationTestTimeout": 30000,
+      "e2eTestTimeout": 60000
+    }
+  },
+  "reviewer": {
+    "pollingIntervalSeconds": 5,
+    "zeroWarningTolerance": true,
+    "requireExampleCode": true,
+    "reversibilityAssessment": true
+  },
+  "deployer": {
+    "platformSelection": {
+      "autoDetect": true,
+      "preferredPlatforms": ["vercel", "netlify", "cloudflare"],
+      "fallbackEnabled": true
+    },
+    "validation": {
+      "healthCheckTimeout": 30,
+      "maxResponseTimeSeconds": 2.0,
+      "requireSecurityScan": true,
+      "requireAccessibilityCheck": false
+    }
+  },
+  "writer": {
+    "pollingIntervalSeconds": 10,
+    "maxSetupTimeMinutes": 5,
+    "minimumFAQItems": 10,
+    "requireScreenshots": false,
+    "testDocumentation": true
+  },
+  "synchronization": {
+    "statusCheckInterval": 10,
+    "timeoutSeconds": 300,
+    "retryAttempts": 3,
+    "useDatabase": false,
+    "statusDirectory": "output/status"
+  },
+  "language": {
+    "internalProcessing": "en",
+    "externalCommunication": "zh",
+    "allowLanguageOverride": true
+  },
+  "overrides": {
+    "byProjectType": {
+      "prototype": {
+        "coder.maxFunctionLines": 80,
+        "coder.testCoverageMinimum": 60,
+        "tester.performance.targetRPS": 100
+      },
+      "enterprise": {
+        "coder.maxFunctionLines": 30,
+        "coder.testCoverageMinimum": 95,
+        "tester.performance.targetRPS": 1000,
+        "deployer.validation.requireSecurityScan": true
+      },
+      "microservice": {
+        "coder.maxFunctionLines": 25,
+        "tester.performance.targetRPS": 2000,
+        "tester.performance.maxResponseTimeMs": 200
+      }
+    }
+  }
+}

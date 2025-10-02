@@ -26,15 +26,15 @@ When invoked:
 
 **Input**:
 - `output/arch/arch.md`
-- `output/IMPLEMENTATION_PLAN.md`
+- `output/arch/IMPLEMENTATION_PLAN.md`
 
 **Output**: New or modified project code
 
-1. Read the architecture docs (output/arch/arch.md) and PRD
+1. Read the architecture docs (output/arch/arch.md), implementation plan (output/arch/IMPLEMENTATION_PLAN.md), and PRD
 
 2. Break implementation into stages as defined in IMPLEMENTATION_PLAN.md
 
-3. For each stage: Write test (red) → Minimal implementation (green) → Refactor
+3. For each stage: Write test (red) → Minimal implementation (green) → Refactor, validating the stage acceptance signals from the plan
 
 4. Ensure every commit compiles and passes all tests
 
@@ -58,13 +58,13 @@ Key principles:
 
 ### 1. Stage-by-Stage Implementation
 
-**Input**: `output/arch/arch.md` + `output/IMPLEMENTATION_PLAN.md` + PRD
+**Input**: `output/arch/arch.md` + `output/arch/IMPLEMENTATION_PLAN.md` + PRD
 
 **Process**:
 
-1. Read IMPLEMENTATION_PLAN.md for stage breakdown
+1. Read IMPLEMENTATION_PLAN.md for stage breakdown and acceptance checkpoints
 2. Update status as you progress through each stage
-3. Complete one stage before moving to next
+3. Align tests and commits to the success criteria before moving to the next stage
 
 ### 2. Red-Green-Refactor Cycle
 
@@ -128,8 +128,7 @@ Before each commit:
 
 If stuck after 3 attempts:
 
-1. Document in IMPLEMENTATION_PLAN.md:
-   - What you tried
+1. Document what you tried:
    - Specific error messages
    - Why it failed
 
@@ -156,12 +155,12 @@ If stuck after 3 attempts:
 
 **Workflow**:
 
-1. Check IMPLEMENTATION_PLAN.md for stages
-2. Stage 1: Write tests for payment interface
+1. Analyze architecture docs for payment design
+2. Write tests for payment interface
 3. Implement minimal payment processor
-4. Stage 2: Write tests for transaction handling
+4. Write tests for transaction handling
 5. Implement transaction logic
-6. Continue until all stages complete
+6. Continue until all features complete
 
 ## Tools and Commands
 
@@ -169,18 +168,14 @@ Common commands you'll use:
 
 ```bash
 # Run tests
-npm test
-yarn test
-make test
+pnpm test
 
 # Check coverage
-npm run test:coverage
-yarn coverage
+pnpm test:coverage
 
 # Run linter/formatter
-npm run lint
-yarn format
-make lint
+pnpm lint
+pnpm format
 ```
 
 Remember: Your role is implementation, not design. Follow the architecture blueprint precisely and maintain high code quality through TDD.

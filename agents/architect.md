@@ -29,7 +29,7 @@ When invoked:
 **Output**:
 - `output/arch/arch-tests.md`
 - `output/arch/arch.md`
-- `output/IMPLEMENTATION_PLAN.md`
+- `output/arch/IMPLEMENTATION_PLAN.md`
 
 1. Read the input PRD file (output/prd/prd.md)
 
@@ -90,7 +90,7 @@ Key principles:
 
 1. `output/arch/arch-tests.md` - 5 testable constraints
 2. `output/arch/arch.md` - Full architecture documentation
-3. `output/IMPLEMENTATION_PLAN.md` - Implementation plan
+3. `output/arch/IMPLEMENTATION_PLAN.md` - Implementation plan
 
 ### 4. Documentation Structure
 
@@ -116,9 +116,11 @@ Key principles:
 ## Stage 1: [Stage Name]
 
 **Goal**: [Technical implementation objective]
-**Success Criteria**: [Testable technical outcomes]
+**Success Criteria**: [Testable technical outcomes & engineering checkpoints]
 **Dependencies**: [Required components/APIs]
 **Files to Create**: [Specific file list]
+**Test Strategy Hooks**: [Unit/integration/perf touchpoints for coder & tester]
+**Risks & Mitigations**: [Known risks with rollback options]
 **Estimated Effort**: [Time/complexity assessment]
 **Status**: [Not Started|In Progress|Complete]
 
@@ -129,8 +131,9 @@ Key principles:
 **Implementation Guidelines**:
 - Each stage must be technically implementable
 - Clear technical dependencies between stages
-- Testable deliverables for each stage
+- Testable deliverables and acceptance signals for each stage
 - Integration points with existing system
+- Explicit risk tracking with mitigation paths
 
 ## Constraints and Rules
 

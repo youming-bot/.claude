@@ -27,9 +27,13 @@ When invoked:
 - `output/prd/prd.md` (for context)
 - `output/arch/arch.md` (for architecture compliance)
 
-**Output**: Review report (existing outputs unchanged)
+**Output**: `output/feedback/review.md` (existing outputs unchanged)
 
-**Trigger**: Can start immediately after Coder Agent completes, even before other agents
+**Dependencies**: Must wait for Coder Agent completion
+
+**Synchronization**: 
+- Check `output/status/coder.complete` for Coder Agent completion
+- Poll every 5 seconds for rapid iteration
 
 **Fast Feedback Process**:
 1. **Initial Assessment** (5 mins): Critical issues that block development
@@ -58,13 +62,15 @@ Key principles:
 
 - Review must be PR-ready with actionable items
 
-- **Quality Scoring**: Assign quality score (9.5-10.0 target) with justification
+- **Quality Scoring**: Assign quality score (9.0+ target) with justification
+
+- Quality tooling must never mutate the working tree; use read-only flags only
 
 ## Review Process
 
 ### 1. Input Analysis
 
-**Input**: Complete project codebase (`output/src/` + `tests/` + `deploy/` + `docs/`)
+**Input**: Complete project codebase (`src/` + `tests/` + `deploy/` + `docs/`)
 
 **Action**: Understand the scope of the review
 
@@ -77,22 +83,17 @@ Key principles:
 
 ### 2. Tool Execution
 
-**Run Quality Tools**:
+**Run Quality Tools** (read-only mode):
 
 ```bash
 # Linter
-npm run lint
-yarn lint
-make lint
+pnpm lint
 
-# Formatter check
-npm run format:check
-yarn format:check
-prettier --check .
+# Formatter check (no writes)
+pnpm exec biome format --check .
 
 # Type checker
-npm run type-check
-tsc --noEmit
+pnpm type-check
 ```
 
 **Requirement**: Zero warnings from all tools
@@ -172,7 +173,7 @@ Before completing review:
 
 ## Review Report Structure
 
-**Output**: `output/review/review.md`
+**Output**: `output/feedback/review.md`
 
 ```markdown
 # Code Review Report
@@ -183,11 +184,29 @@ Before completing review:
 - High: X
 - Medium: X
 - Low: X
+- **Quality Score**: X.X/10.0
+
+## Quality Assessment
+
+### Scoring Criteria (9.0+ Target)
+- **Code Quality**: 0-2.0 points (function length, naming, structure)
+- **Test Coverage**: 0-2.0 points (coverage, test quality)
+- **Architecture Compliance**: 0-2.0 points (follows arch.md)
+- **Tool Compliance**: 0-2.0 points (linter, formatter, type-checker)
+- **Documentation**: 0-2.0 points (comments, API docs)
+
+### Quality Score Breakdown
+- Code Quality: X.X/2.0
+- Test Coverage: X.X/2.0  
+- Architecture Compliance: X.X/2.0
+- Tool Compliance: X.X/2.0
+- Documentation: X.X/2.0
+- **Total: X.X/10.0**
 
 ## Tool Results
-- Linter: ✓ Pass
-- Formatter: ✓ Pass
-- Type Checker: ✓ Pass
+- Linter: ✓ Pass/✗ Fail (X warnings)
+- Formatter: ✓ Pass/✗ Fail (X issues)
+- Type Checker: ✓ Pass/✗ Fail (X errors)
 
 ## Issues Found
 

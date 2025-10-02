@@ -25,7 +25,7 @@
 ### 3. Coder Agent
 - **Input**: `output/arch/arch.md`, `output/arch/IMPLEMENTATION_PLAN.md`
 - **Output**: New or modified project code
-- **Responsibility**: Implement code based on architecture design
+- **Responsibility**: Implement code based on architecture design and staged implementation plan
 
 ### 4. Reviewer Agent
 - **Input**: Complete project codebase, `output/arch/arch.md`
@@ -50,11 +50,11 @@
 ## Workflow Diagram
 
 ```
-.idea.txt → Product → Architect → Coder
-                 ↓                      ↓
-              Reviewer               Tester
-                 ↓                      ↓
-                 Writer ←─────────── Deployer
+.claude/.idea.txt → Product → Architect → Coder
+                       ↓                      ↓
+                    Reviewer               Tester
+                       ↓                      ↓
+                       Writer ←─────────── Deployer
 ```
 
 ## Parallel Execution
@@ -64,25 +64,34 @@
    - Core requirements and architecture must be established first
 
 ### Parallel Phase
-2. **Reviewer, Tester, Deployer, Writer** work simultaneously
-   - Reviewer: Review code quality
-   - Tester: Write test cases
-   - Deployer: Prepare deployment configuration
-   - Writer: Generate documentation
+2. **Reviewer, Tester, Deployer** work simultaneously (after Coder completion)
+   - Reviewer: Review code quality (depends on Coder)
+   - Tester: Write test cases (depends on Coder)
+   - Deployer: Prepare deployment configuration (depends on Coder)
+
+3. **Writer** works after Tester and Deployer completion
+   - Writer: Generate documentation (depends on Tester & Deployer)
 
 ## Dependencies
 
-- **Parallel agents**: Judge dependencies based on input file existence
+### Explicit Dependencies
+- **Reviewer** → depends on **Coder** (`output/status/coder.complete`)
+- **Tester** → depends on **Coder** (`output/status/coder.complete`)
+- **Deployer** → depends on **Coder** (`output/status/coder.complete`)
+- **Writer** → depends on **Tester** & **Deployer** (`output/status/tester.complete`, `output/status/deployer.complete`)
+
+### Status Synchronization Mechanism
+- **Status files**: Create `output/status/{agent}.complete` file after each agent completes
+- **Check intervals**: 
+  - Reviewer/Tester/Deployer: Check every 5 seconds for rapid iteration
+  - Writer: Check every 10 seconds (configurable)
+- **Timeout mechanism**: 5-minute timeout, maximum 3 retry attempts
+
+### System Properties
+- **Parallel agents**: Judge dependencies based on input file existence and status files
 - **Status synchronization**: Coordinate agent execution through status files
 - **Error handling**: Simple retry mechanism
 - **Quality standards**: Unified quality gate (9.0 target score)
-
-### Status Synchronization Mechanism
-
-- **Status files**: Create `output/status/{agent}.complete` file after each agent completes
-- **Check interval**: Check dependency status every 10 seconds (configurable)
-- **Timeout mechanism**: 5-minute timeout, maximum 3 retry attempts
-- **Dependency waiting**: Writer Agent waits for Tester and Deployer completion
 
 ## File Structure
 

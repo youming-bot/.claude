@@ -28,7 +28,7 @@ When invoked:
 - Complete project codebase
 - **Dependencies**: Must wait for Tester Agent and Deployer Agent completion
 
-**Output**: `output/docs/` (from frontend, API, architecture, testing, and product perspectives)
+**Output**: `output/docs/README.md` and supporting documentation (from frontend, API, architecture, testing, and product perspectives)
 
 **Synchronization**:
 - Check `output/status/tester.complete` for Tester Agent completion
@@ -89,8 +89,8 @@ start=$(date +%s)
 cat README.md | head -20  # Check for clear setup instructions
 
 # Follow README exactly
-npm install
-npm run dev
+pnpm install
+pnpm run dev
 # Verify it's running
 curl -f http://localhost:3000 || exit 1
 
@@ -241,14 +241,14 @@ If stuck after 3 attempts:
 
 ```bash
 # Generate screenshots (example)
-npx cypress run --spec "screenshots.spec.js"
+pnpm exec cypress run --spec "screenshots.spec.js"
 
 # Test documentation
 bash docs-test.sh
 
 # Build docs site (if applicable)
-npm run docs:build
-npm run docs:serve
+pnpm run docs:build
+pnpm run docs:serve
 ```
 
 Remember: Your role is to make the project accessible to users. Documentation should be so clear that a new developer can succeed without asking questions. Never sacrifice clarity for completeness.
