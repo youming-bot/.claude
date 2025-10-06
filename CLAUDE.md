@@ -1,10 +1,3 @@
-## Language Protocol
-
-- **Internal Processing**: Always think in English for precise technical reasoning
-- **External Communication**: All answers and responses must be in Chinese (中文)
-- **Consistency**: Maintain Chinese as the exclusive language for user interactions
-- **Context Switching**: Process technical concepts in English, translate outputs to Chinese
-
 # Development Guidelines
 
 ## Philosophy
@@ -27,17 +20,15 @@
 
 ### 1. Planning & Staging
 
-Break complex work into 3-5 stages. Document in `output/arch/IMPLEMENTATION_PLAN.md`:
+Break complex work into 3-5 stages. Document in `IMPLEMENTATION_PLAN.md`:
 
 ```markdown
 ## Stage N: [Name]
-
 **Goal**: [Specific deliverable]
 **Success Criteria**: [Testable outcomes]
 **Tests**: [Specific test cases]
 **Status**: [Not Started|In Progress|Complete]
 ```
-
 - Update status as you progress
 - Remove file when all stages are done
 
@@ -149,14 +140,12 @@ When multiple valid approaches exist, choose based on:
 ## Important Reminders
 
 **NEVER**:
-
 - Use `--no-verify` to bypass commit hooks
 - Disable tests instead of fixing them
 - Commit code that doesn't compile
 - Make assumptions - verify with existing code
 
 **ALWAYS**:
-
 - Commit working code incrementally
 - Update plan documentation as you go
 - Learn from existing implementations
